@@ -1,0 +1,38 @@
+shortest: 8 10 17 22 27 31 
+shortest length: 131
+your length: 131
+shortest: 5 6 12 22 27 39 38 
+shortest length: 169
+your length: 192
+shortest: 1 4 11 12 22 27 31 34 44 45 48 
+shortest length: 243
+your length: 273
+shortest: 4 11 12 22 23 28 32 33 35 41 
+shortest length: 195
+your length: 198
+shortest: 24 23 22 21 20 19 25 30 
+shortest length: 154
+your length: 202
+shortest: 9 15 18 25 37 42 47 
+shortest length: 148
+your length: 169
+
+shortest: 8 10 17 22 27 31 
+shortest length: 131
+your length: 131
+shortest: 5 6 12 22 27 39 38 
+shortest length: 169
+your length: 182
+shortest: 1 4 11 12 22 27 31 34 44 45 48 
+shortest length: 243
+your length: 251
+shortest: 4 11 12 22 23 28 32 33 35 41 
+shortest length: 195
+your length: 196
+shortest: 24 23 22 21 20 19 25 30 
+shortest length: 154
+your length: 159
+shortest: 9 15 18 25 37 42 47 
+shortest length: 148
+your length: 155
+
