@@ -39,3 +39,5 @@
 *.zip
 *.xls
 *.xlsx
+.DS_Store
+acm
