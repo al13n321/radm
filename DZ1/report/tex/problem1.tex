@@ -1,0 +1,26 @@
+\section{Problem 1}
+
+\paragraph{}
+We considered the graph with vertices corresponding to locations and edges corresponding to road segments. The weights of the edges correspond to length, time or cost, depending on the problem.
+
+For finding shortest paths we used Floyd-Warshall algorithm for finding shortest path. For bigger graphs one might want to use Dijkstra’s algorithm instead. To find shortest path passing through certain edges, we tried all permutations and orientations of these edges and for each of them we concatenated shortest paths between consecutive edges (and paths from the start to the first edge and from the last edge to the end).
+
+\paragraph{Problem 1.1}
+Let edge weights be equal to lengths in kilometers from \ref{figure1_10}.
+
+The paths found by hand and shortest paths are shown in \ref{manual_vs_automatic_1_11}. Only one path is guessed correctly.
+
+\begin{table}[H]
+\label{manual_vs_automatic_1_11}
+\begin{tabular}{|c|p{6cm}|c|c|p{6cm}|}
+\hline
+ & Path found manually in 20s & Len & Len & Path found automatically \\ \hline
+(1) & 8 \rightarrow 10 \rightarrow 17 \rightarrow 22 \rightarrow 27 \rightarrow 31 & 13.1 & 13.1 & 8 \rightarrow 10 \rightarrow 17 \rightarrow 22 \rightarrow 27 \rightarrow 31 \\ \hline
+(2) & 5 \rightarrow 6 \rightarrow 13 \rightarrow 14 \rightarrow 23 \rightarrow 28 \rightarrow 31 \rightarrow 34 \rightarrow 39 \rightarrow 38 & 18.2 & 16.9 & 5 \rightarrow 6 \rightarrow 12 \rightarrow 22 \rightarrow 27 \rightarrow 39 \rightarrow 38 \\ \hline
+(3) & 1 \rightarrow 4 \rightarrow 11 \rightarrow 12 \rightarrow 22 \rightarrow 21 \rightarrow 27 \rightarrow 31 \rightarrow 34 \rightarrow 44 \rightarrow 45 \rightarrow 48 & 25.1 & 24.3 & 1 \rightarrow 4 \rightarrow 11 \rightarrow 12 \rightarrow 22 \rightarrow 27 \rightarrow 31 \rightarrow 34 \rightarrow 44 \rightarrow 45 \rightarrow 48 \\ \hline
+(4) & 4 \rightarrow 11 \rightarrow 12 \rightarrow 14 \rightarrow 24 \rightarrow 29 \rightarrow 33 \rightarrow 35 \rightarrow 41 & 19.6 & 19.5 & 4 \rightarrow 11 \rightarrow 12 \rightarrow 22 \rightarrow 23 \rightarrow 28 \rightarrow 32 \rightarrow 33 \rightarrow 35 \rightarrow 41 \\ \hline
+(5) & 24 \rightarrow 29 \rightarrow 28 \rightarrow 27 \rightarrow 26 \rightarrow 25 \rightarrow 30 & 15.9 & 15.4 & 24 \rightarrow 23 \rightarrow 22 \rightarrow 21 \rightarrow 20 \rightarrow 19 \rightarrow 25 \rightarrow 30 \\ \hline
+(6) & 9 \rightarrow 15 \rightarrow 18 \rightarrow 19 \rightarrow 26 \rightarrow 38 \rightarrow 43 \rightarrow 47 & 15.5 & 14.8 & 9 \rightarrow 15 \rightarrow 18 \rightarrow 25 \rightarrow 37 \rightarrow 42 \rightarrow 47 \\ \hline
+\end{tabular}
+\caption{Shortest paths guessed by human and found by machine.}
+\end{table}
