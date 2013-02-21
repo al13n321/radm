@@ -23,7 +23,6 @@ units) between locations. The cost of the cable is \texteuro 5,000 per kilometer
 \begin{enumerate}[(a)]
 \item \begin{quote}Calculate the minimum length of cable needed to connect all locations in Figure
 \ref{graph2-1}. Also give the list of connections that are used for the cabling.\end{quote}
-\end{enumerate}
 
 \paragraph{}
 	Let's consider a graph with vertices corresponding to the locations in a country and edges corresponding to possible direct connections. This graph is undirected because the cable connections transmit data in both directions and weighted --- weight of a particular edge connecting two vertices is a length of a possible direct connection in km between two corresponding locations.
@@ -42,3 +41,19 @@ units) between locations. The cost of the cable is \texteuro 5,000 per kilometer
 	\caption{List of connections in a minimum cost communication system}
 	\label{mst1}
 \end{figure}
+
+\item \begin{quote}GTC regrets that the locations 9 and 17 are not directly connected in the solution
+of part (a). There can be taken two ways to get 9 and 17 connected --- adding
+a direct cable between 9 and 17 to the solution of Problem 2.1(a) and deleting a
+most expensive connection in the cycle thus created, or repeating the calculations
+of Problem 2.1(a) with the extra restriction that the connection 9 -- 17 has to be
+in the new solution. Compare both methods. Will both methods always give the
+same result? Explain your answer.\end{quote}
+
+\paragraph{}
+	Both methods will always give the same result. The 9 -- 17 edge will produce a cycle 9 -- 10 -- 14 -- 15 -- 17 -- 9 where the heaviest edge besides 9 -- 17 is 15 -- 17 that will be removed from the tree. The resulting tree will have a total cable length of 1022 km with a total cost of \texteuro 5,110,000.
+
+\paragraph{}
+	The equivalence of both methods can be easily shown if one follows the steps of the Kruskal's algorithm. According to the Kruskal's algorithm the MST is built incrementally edge by edge in the ascending order of weights. The important part is that on each iteration of the algorithm the current edge is either added to the MST or disregarded since it produces a cycle. So if an edge was once added to MST than it wouldn't be deleted later. Thus we can consider the iterative consecutive process of building cycle 9 -- 10 -- 14 -- 15 -- 17 -- 9 edge by edge instead of adding 9 -- 17 to the complete MST. Since the algorithm iterates through edges in the ascending order of weights the last two edges to consider will be 15 -- 17 and 9 -- 17 as the heaviest ones. But one can make these two edges equally suitable for the Kruskal algorithm by increasing the weight of 15 -- 17 to match the weight of 9 -- 17. After that the algorithm can naturally pick the edge 9 -- 17 thus building a new spanning tree with total weight increased by exactly the weight difference of edges 9 -- 17 and 15 -- 17. But increasing the weight of 15 -- 17 is the exact equivalence of adding 9 -- 17 to spanning tree as the first edge from this cycle since the Kruskal's algorithm will add the remaining edges in ascending order of weight thus leaving the 15 -- 17 behind as the second heaviest.
+
+\end{enumerate}
