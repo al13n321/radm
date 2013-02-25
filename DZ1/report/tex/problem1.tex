@@ -68,7 +68,7 @@ Use the time network depicted in Figure 1.11 to respond to the following. Unless
 \centering
 \includegraphics[scale=1]{./img/figure1-11.png}
 \caption{Schematic road map with travel times in minutes}
-\label{figure1-10}
+\label{figure1-11}
 \end{figure}
 
 \paragraph{(a)}
@@ -274,3 +274,112 @@ A driver goes from site 37 to site 43 and has to pass the road segments 35 – 4
 
 The quickest path is $ 37 \rightarrow 38 \rightarrow 39 \rightarrow 34 \rightarrow 40 \rightarrow 35 \rightarrow 41 \rightarrow 40 \rightarrow 44 \rightarrow 43 $. It takes 31.4 minutes, so the answer is yes.
 \end{enumerate}
+
+\subsection{Problem 1.3. Manpower Planning}
+
+\paragraph{}
+\begin{quote}
+The management of GTC has decided to replace its old cable network. The Re- search & Development (R&D) department has been asked to design a new cable that has ten times more capacity than the old cable. The cable has to be developed within the next five years. In this period all the three activities, viz. actual research, testing, and evaluation, have to be carried out. These three activities will be exe- cuted simultaneously. The most expensive part of the project concerns wages and training of the research employees. The company has already employed a number of researchers, but during the five years extra researchers will be needed. These extra researchers need to undergo special training due to the specific character of the work. R&D requires a lower number of researchers during the testing period than during the evaluation and research periods. It has decided to work with half-yearly planning periods because, in general, the nature of the work changes noticeably every half year. The company has to design a schedule of hiring and firing people. The next question is on determining an optimal hiring-firing schedule.
+
+The numbers of extra research employees needed for the research and development of the new cable for the next ten consecutive half-year periods are listed in Table 1.1. The half-year periods are labeled 1, . . . , 10. The training of a new researcher requires an investment of \texteuro 8,000. Firing a person is expensive, it costs \texteuro 24,000 per fired person. Moreover, if there are fewer people under contract than required, it costs the company an average of \texteuro 32,000 per person per half-year.
+\end{quote}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccccccccc}
+\hline
+Period & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+Extra researchers & 9 & 7 & 6 & 12 & 11 & 8 & 13 & 11 & 7 & 10 \\ \hline
+\end{tabular}
+\caption{Extra researcher requirement for the project}
+\label{extra-researchers}
+\end{table}
+
+\paragraph{}
+Probably there is a typo in the sentence "Moreover, if there are fewer people under contract than required, it costs the company an average of €32,000 per person per half-year". "fewer" in that sentence makes little sense, we'll assume "greater" instead.
+
+\paragraph{(a)}
+\begin{quote}
+Determine a hiring-firing schedule to minimize cost, such that the number of employed researchers is as high as possible during each period. Use a shortest path problem formulation for solving this problem. What is the total number of redundant researchers in your solution?
+\end{quote}
+
+\paragraph{}
+We found the shortest path on the following graph. Let $v_{i, j}$ ($0 \leq i \leq 10$, $0 \leq j \leq 13$) be the vertex of the graph corresponding to a state after period $i$ with $j$ employees under contract. There are three types of edges. Edges $v_{i, j} \rightarrow v_{i, j+1}$ with weight $\text{\texteuro} 8000$ mean hiring an employee. Edges $v_{i, j+1} \rightarrow v_{i, j}$ with weight \texteuro 24000 mean firing an employee. Edges $v_{i, j} \rightarrow v_{i+1, j}$ with weight $\text{\texteuro} \cdot (32000 -\varepsilon) \cdot (j - A_{i+1})$ ($j \geq A_{i+1}$, $A_k$ - required number of researchers for period $k$), mean waiting half year. Subtracting $\varepsilon$ maximizes the total number of employees during all periods when the cost is equal.
+
+\paragraph{}
+The optimal number of researchers for each period is shown in table \ref{researchers-1-3a}. The minimum total cost is \texteuro 496000.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccccccccc}
+\hline
+Period & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+Researchers & 9 & 7 & 7 & 12 & 11 & 11 & 13 & 11 & 10 & 10 \\ \hline
+\end{tabular}
+\caption{Researchers under contract for each period in optimal schedule.}
+\label{researchers-1-3a}
+\end{table}
+
+\paragraph{(b)}
+\begin{quote}
+In the periods 3 and 6 the expected work pressure is lower than normal. Determine an optimal solution for which the number of researchers under contract is minimal during these periods.
+\end{quote}
+
+\paragraph{}
+We'll use the same graph as in (a), but without edges $v_{i, j} \rightarrow v_{i+1, j}$ for $i \in \{2, 5\}$, $j > A_{i+1}$. The optimal number of researchers for each period is shown in table \ref{researchers-1-3b}. The minimum total cost is still \texteuro 496000.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccccccccc}
+\hline
+Period & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+Researchers & 9 & 7 & 6 & 12 & 11 & 8 & 13 & 11 & 10 & 10 \\ \hline
+\end{tabular}
+\caption{Researchers under contract for each period in optimal schedule.}
+\label{researchers-1-3b}
+\end{table}
+
+\subsection{Problem 1.4. Subsidizing Connections}
+
+\begin{quote}
+In order to test the new cable, the company has decided to connect the university, located at site 3 of the network of Figure 1.10, to the R&D building of GTC, located at site 46, using its cable network.
+The City Council desires that two clinics associated with the city hospital, which are located at sites 8 and 20, be connected by a high capacity cable. So it wants to find out how much subsidy to give to GTC such that it is profitable for GTC to connect the two sites 8 and 20 with the new cable.
+The City Council has decided to subsidize the laying of cable on the paths 8 – 10 – 16 – 20 and 29 – 28 – 31 – 34. The cables on either of the two paths cannot be interrupted. In order to minimize the disruption to the traffic circulation, it has also decided that work on laying cable on the paths 8 – 10 – 16 – 20, 16 – 19 – 26 – 38 – 37 – 42, 29 – 28 – 31 – 34 – 39 – 27 – 22 – 12 – 6, and 48 – 45 – 44 – 40 – 32 – 33 has to be executed in the directions 8 $\rightarrow$ 10 $\rightarrow$ 16 $\rightarrow$ 20, 16 $\rightarrow$ 19 $\rightarrow$ 26 $\rightarrow$ 38 $\rightarrow$ 37 $\rightarrow$ 42, 29 $\rightarrow$ 28 $\rightarrow$ 31 $\rightarrow$ 34 $\rightarrow$ 39 $\rightarrow$ 27 $\rightarrow$ 22 $\rightarrow$ 12 $\rightarrow$ 6, and 48 $\rightarrow$ 45  $\rightarrow$ 44 $\rightarrow$ 40 $\rightarrow$ 32 $\rightarrow$ 33, respectively. Actually, the subsidy also yields some extra profit for GTC. The construction costs are a multiple of the distances from Figure 1.10, in \texteuro 1,000’s per km. The subsidies on road segment 8 $\rightarrow$ 10 is \texteuro 3,500, on road segment 29 $\rightarrow$ 28 is \texteuro 6,800, on road segment 10 $\rightarrow$ 16 is \texteuro 6,600, on road segment 28 $\rightarrow$ 31 is \texteuro 2,900, on road segment 16 $\rightarrow$ 20 is \texteuro 4,900, and on road segment 31 $\rightarrow$ 34 is \texteuro 2,200.
+\end{quote}
+
+\paragraph{(a)}
+\begin{quote}
+Is it true that the subsidy is high enough, i.e., is it profitable for GTC to connect the sites 3 and 46 via the subsidized paths?
+\end{quote}
+
+\paragraph{}
+We took a bidirectional weighted graph from figure \ref{figure1-10} and multiplied edge weights by \texteuro 1,000. We replaced bidirectional edges with directional edges on paths 8 $\rightarrow$ 10 $\rightarrow$ 16 $\rightarrow$ 20, 16 $\rightarrow$ 19 $\rightarrow$ 26 $\rightarrow$ 38 $\rightarrow$ 37 $\rightarrow$ 42, 29 $\rightarrow$ 28 $\rightarrow$ 31 $\rightarrow$ 34 $\rightarrow$ 39 $\rightarrow$ 27 $\rightarrow$ 22 $\rightarrow$ 12 $\rightarrow$ 6, and 48 $\rightarrow$ 45  $\rightarrow$ 44 $\rightarrow$ 40 $\rightarrow$ 32 $\rightarrow$ 33. We subtracted subsidy values from subsidized paths. We then found the shortest path from vertex 3 to vertex 46.
+
+\paragraph{}
+The cheapest path is $ 3 \rightarrow 8 \rightarrow 10 \rightarrow 16 \rightarrow 20 \rightarrow 21 \rightarrow 22 \rightarrow 23 \rightarrow 24 \rightarrow 29 \rightarrow 28 \rightarrow 31 \rightarrow 34 \rightarrow 40 \rightarrow 46 $. It is profitable for GTC to use subsidized paths.
+
+\paragraph{(b)}
+\begin{quote}
+Knowing that GTC is also considering a new cable between the sites 2 and 50, and having confidence in a positive effect of the subsidies stated above, the City Council has approved an extra subsidy on paths 45 – 44 – 40 – 32 and 27 – 22 – 12 – 6. The subsidy on road segment 40→32 is \texteuro 3,200, on road segment 12 $\rightarrow$ 6 is \texteuro 7,700, on road segment 44 $\rightarrow$ 40 is \texteuro 4,700, on road segment 22 $\rightarrow$ 12 is \texteuro 7,100, on road segment 45 $\rightarrow$ 44 is \texteuro 2,800, and on road segment 27 $\rightarrow$ 22 is \texteuro 6,900.
+
+Explain why it is not possible to use a shortest path algorithm to decide on the profitability for GTC to lay the cable on the two paths.
+\end{quote}
+
+\paragraph{}
+We can't use shortest path algorithm in a straightforward way because the graph has cycles of negative weight. One of such cycles is $8 \rightarrow 10 \rightarrow 16 \rightarrow 20 \rightarrow 21 \rightarrow 22 \rightarrow 12 \rightarrow 6 \rightarrow 5 \rightarrow 4 \rightarrow 8$.
+
+\paragraph{(c)}
+\begin{quote}
+After a re-calculation the City Council has decided to decrease the subsidy on 29 – 28 from \texteuro 6,800 to \texteuro 5,500. Answer the same question as in part (b).
+\end{quote}
+
+\paragraph{}
+The answer is the same: cycle $8 \rightarrow 10 \rightarrow 16 \rightarrow 20 \rightarrow 21 \rightarrow 22 \rightarrow 12 \rightarrow 6 \rightarrow 5 \rightarrow 4 \rightarrow 8$ still has negative cost \texteuro $-4800$.
+
+\paragraph{(d)}
+\begin{quote}
+Determine a solution (need not be optimal) for the following situation. The sites 3 and 46, and the sites 2 and 50 need to be connected by a cable, one between 3 and 46, and one between 2 and 50. If the two cables connect two sites with subsidy, then the subsidy is given only once.
+\end{quote}
+
+\paragraph{}
+As long as the answer doesn't have to be optimal, we can take two arbitrary paths, for example $3 \rightarrow 8 \rightarrow 10 \rightarrow 17 \rightarrow 22 \rightarrow 23 \rightarrow 28 \rightarrow 31 \rightarrow 34 \rightarrow 40 \rightarrow 46$ and $ 2 \rightarrow 6 \rightarrow 13 \rightarrow 14 \rightarrow 23 \rightarrow 28 \rightarrow 31 \rightarrow 34 \rightarrow 40 \rightarrow 46 \rightarrow 49 \rightarrow 50 $ with total cost \texteuro 36800.
