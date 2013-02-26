@@ -1,0 +1,115 @@
+(a)
+flow: 11035, cost: 578535, edges:
+$ 2 \rightarrow 1 $ : 170
+$ 2 \rightarrow 3 $ : 95
+$ 8 \rightarrow 5 $ : 65
+$ 8 \rightarrow 6 $ : 230
+$ 8 \rightarrow 7 $ : 405
+$ 11 \rightarrow 2 $ : 665
+$ 11 \rightarrow 13 $ : 385
+$ 12 \rightarrow 10 $ : 280
+$ 13 \rightarrow 4 $ : 210
+$ 14 \rightarrow 13 $ : 140
+$ 15 \rightarrow 5 $ : 75
+$ 15 \rightarrow 9 $ : 280
+$ 17 \rightarrow 16 $ : 500
+$ 18 \rightarrow 12 $ : 420
+$ 18 \rightarrow 17 $ : 720
+$ 20 \rightarrow 14 $ : 260
+$ 20 \rightarrow 19 $ : 145
+$ 21 \rightarrow 15 $ : 720
+$ 21 \rightarrow 20 $ : 585
+$ 21 \rightarrow 22 $ : 325
+$ 21 \rightarrow 26 $ : 520
+$ 23 \rightarrow 18 $ : 1400
+$ 23 \rightarrow 19 $ : 200
+$ 24 \rightarrow 23 $ : 1940
+$ 24 \rightarrow 25 $ : 385
+$ 24 \rightarrow 29 $ : 185
+$ 25 \rightarrow 30 $ : 215
+$ 26 \rightarrow 27 $ : 410
+$ 33 \rightarrow 28 $ : 165
+$ 33 \rightarrow 34 $ : 1420
+$ 33 \rightarrow 38 $ : 1290
+$ 34 \rightarrow 41 $ : 1010
+$ 35 \rightarrow 31 $ : 350
+$ 36 \rightarrow 35 $ : 535
+$ 36 \rightarrow 37 $ : 630
+$ 36 \rightarrow 42 $ : 585
+$ 37 \rightarrow 44 $ : 420
+$ 38 \rightarrow 32 $ : 290
+$ 38 \rightarrow 39 $ : 335
+$ 38 \rightarrow 40 $ : 280
+$ 39 \rightarrow 45 $ : 85
+$ 41 \rightarrow 46 $ : 870
+$ 42 \rightarrow 43 $ : 325
+$ 43 \rightarrow 47 $ : 5
+$ 44 \rightarrow 49 $ : 285
+$ 46 \rightarrow 47 $ : 720
+$ 47 \rightarrow 48 $ : 235
+$ 47 \rightarrow 50 $ : 190
+
+flows from source:
+700 1050 2150 2510 2875 1750 
+residuals from source:
+0 0 0 390 225 0 
+
+(b)
+$ 38 \rightarrow 40 $ & 10\\ \hline
+$ 33 \rightarrow 38 $ & 1\\ \hline
+$ 12 \rightarrow 10 $ & -1\\ \hline
+$ 35 \rightarrow 31 $ & 25\\ \hline
+$ 29 \rightarrow 34 $ & 1000000000\\ \hline
+
+(c)
+flow: 11035, cost: 658175, edges:
+$ 2 \rightarrow 1 $ : 170
+$ 2 \rightarrow 3 $ : 95
+$ 8 \rightarrow 5 $ : 65
+$ 8 \rightarrow 6 $ : 230
+$ 8 \rightarrow 7 $ : 405
+$ 11 \rightarrow 2 $ : 665
+$ 11 \rightarrow 13 $ : 385
+$ 12 \rightarrow 10 $ : 280
+$ 13 \rightarrow 4 $ : 210
+$ 14 \rightarrow 13 $ : 140
+$ 15 \rightarrow 5 $ : 75
+$ 15 \rightarrow 9 $ : 280
+$ 16 \rightarrow 12 $ : 310
+$ 17 \rightarrow 16 $ : 810
+$ 18 \rightarrow 12 $ : 110
+$ 20 \rightarrow 14 $ : 260
+$ 20 \rightarrow 19 $ : 145
+$ 21 \rightarrow 15 $ : 720
+$ 21 \rightarrow 20 $ : 585
+$ 21 \rightarrow 22 $ : 325
+$ 21 \rightarrow 26 $ : 520
+$ 23 \rightarrow 18 $ : 370
+$ 23 \rightarrow 19 $ : 200
+$ 24 \rightarrow 23 $ : 910
+$ 24 \rightarrow 25 $ : 385
+$ 24 \rightarrow 29 $ : 1605
+$ 25 \rightarrow 30 $ : 215
+$ 26 \rightarrow 27 $ : 410
+$ 28 \rightarrow 17 $ : 1030
+$ 29 \rightarrow 34 $ : 1420
+$ 33 \rightarrow 28 $ : 1195
+$ 33 \rightarrow 38 $ : 1290
+$ 34 \rightarrow 41 $ : 1010
+$ 35 \rightarrow 31 $ : 350
+$ 36 \rightarrow 35 $ : 535
+$ 36 \rightarrow 37 $ : 630
+$ 36 \rightarrow 42 $ : 585
+$ 37 \rightarrow 44 $ : 420
+$ 38 \rightarrow 32 $ : 290
+$ 38 \rightarrow 39 $ : 335
+$ 38 \rightarrow 40 $ : 280
+$ 39 \rightarrow 45 $ : 85
+$ 41 \rightarrow 46 $ : 870
+$ 42 \rightarrow 43 $ : 325
+$ 43 \rightarrow 47 $ : 5
+$ 44 \rightarrow 49 $ : 285
+$ 46 \rightarrow 47 $ : 720
+$ 47 \rightarrow 48 $ : 235
+$ 47 \rightarrow 50 $ : 190
+

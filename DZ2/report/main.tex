@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage{mystyle}
+
+\def\grad{{\rm{grad}}}
+\def\cov{{\rm{Cov}}}
+\def\var{{\rm{Var}}}
+\def\tr{{\rm{tr}}}
+\def\diag{{\rm{diag}}}
+\def\half{{1\over2}}
+\def\sys#1{\begin{cases} #1 \end{cases}}
+\def\vect#1{\mathrm{#1}}
+\def\ceil#1{{\lceil {#1} \rceil}}
+\def\floor#1{{\lfloor {#1} \rfloor}}
+\def\matr#1{\left[\begin{matrix} #1 \end{matrix}\right]}
+
+\begin{document}
+
+\input{./tex/title.tex}
+\input{./tex/abstract.tex}
+\pagebreak
+
+\tableofcontents
+\listoffigures
+\listoftables
+\pagebreak
+ 
+\input{./tex/preface.tex}
+
+\input{./tex/problem1.tex}
+\input{./tex/problem2.tex}
+\input{./tex/problem6.tex}
+%\input{./tex/conclusion.tex}
+ 
+% Bibliography:
+\clearpage
+\addcontentsline{toc}{section}{Bibliography}
+\input{./tex/bibliography.tex}
+
+\end{document}
+                                                                               

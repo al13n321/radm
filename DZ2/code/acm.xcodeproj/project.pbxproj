@@ -1,0 +1,240 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C18834614323B870028C801 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C18834514323B870028C801 /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8C18833F14323B870028C801 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8C18834114323B870028C801 /* acm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = acm; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C18834514323B870028C801 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = main.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		8C25B9AD157A54F400C00983 /* scratchpad.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scratchpad.txt; sourceTree = "<group>"; };
+		8CA0468A143314CA00EC384A /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		8CA0468C143314D300EC384A /* output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = output.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C18833E14323B870028C801 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C18833614323B870028C801 = {
+			isa = PBXGroup;
+			children = (
+				8C18834414323B870028C801 /* acm */,
+				8C18834214323B870028C801 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C18834214323B870028C801 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C18834114323B870028C801 /* acm */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C18834414323B870028C801 /* acm */ = {
+			isa = PBXGroup;
+			children = (
+				8C18834514323B870028C801 /* main.cpp */,
+				8CA0468A143314CA00EC384A /* input.txt */,
+				8CA0468C143314D300EC384A /* output.txt */,
+				8C25B9AD157A54F400C00983 /* scratchpad.txt */,
+			);
+			path = acm;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C18834014323B870028C801 /* acm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C18834B14323B870028C801 /* Build configuration list for PBXNativeTarget "acm" */;
+			buildPhases = (
+				8C18833D14323B870028C801 /* Sources */,
+				8C18833E14323B870028C801 /* Frameworks */,
+				8C18833F14323B870028C801 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = acm;
+			productName = acm;
+			productReference = 8C18834114323B870028C801 /* acm */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C18833814323B870028C801 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 8C18833B14323B870028C801 /* Build configuration list for PBXProject "acm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8C18833614323B870028C801;
+			productRefGroup = 8C18834214323B870028C801 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C18834014323B870028C801 /* acm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C18833D14323B870028C801 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C18834614323B870028C801 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8C18834914323B870028C801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__ASD__,
+					"DEBUG=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include/freetype2/,
+					/opt/local/include/cairo,
+					"/opt/local/lib/sigc++-2.0/include/",
+					"/opt/local/include/sigc++-2.0/",
+					"/opt/local/lib/cairomm-1.0/include/",
+					"/opt/local/include/cairomm-1.0/",
+					/opt/local/include/,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8C18834A14323B870028C801 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = __ASD__;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include/freetype2/,
+					/opt/local/include/cairo,
+					"/opt/local/lib/sigc++-2.0/include/",
+					"/opt/local/include/sigc++-2.0/",
+					"/opt/local/lib/cairomm-1.0/include/",
+					"/opt/local/include/cairomm-1.0/",
+					/opt/local/include/,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8C18834C14323B870028C801 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib/cairo,
+					/opt/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8C18834D14323B870028C801 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib/cairo,
+					/opt/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C18833B14323B870028C801 /* Build configuration list for PBXProject "acm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C18834914323B870028C801 /* Debug */,
+				8C18834A14323B870028C801 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C18834B14323B870028C801 /* Build configuration list for PBXNativeTarget "acm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C18834C14323B870028C801 /* Debug */,
+				8C18834D14323B870028C801 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C18833814323B870028C801 /* Project object */;
+}

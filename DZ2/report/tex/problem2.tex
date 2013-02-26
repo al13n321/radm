@@ -1,0 +1,178 @@
+\subsection{Problem 3.2. More Transportation Schedules}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{./img/figure3-14.png}
+	\caption{Supplies and demands (in units of 10 spools), and truck costs (in units of e10) on a road map with 50 locations}
+	\label{network3-2}
+\end{figure}
+
+\paragraph{}
+\begin{quote}
+In another country GTC has to deal with similar questions as in Problem 3.1. In Figure 3.14 the road map for this country is depicted with 50 locations. There are six cable depots, labeled A, B, C, D, E, and F. All numbers in this figure are given in units of ten spools. The inventories at the various depots are the positive numbers next to the depot labels. For instance, in depot C there are 1,400 cable spools in stock. The locations with labels 1,~\dots,~44 are points where cable is needed, so called demand locations. The numbers next to these labels (with a negative sign) refer to the number of spools demanded at these points. For instance, 650 spools needed at location 17. The numbers attached to the road segments are the transportation costs (in \texteuro 10 units). For instance, the cost of transporting ten spools with one truck is \texteuro 290 on the road segment 22 $\rightarrow$ 40.
+\end{quote}
+
+\paragraph{(a)}
+\begin{quote}
+Determine a transportation plan such that all demands are satisfied at minimum truck costs.
+\end{quote}
+
+\paragraph{}
+We consider a graph obtained from figure \ref{network3-2} in the same way as in problem 3.1. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied). The flow (which is also a transportation plan) is shown in figure \ref{flow3-2a}. The minimum total cost is \texteuro 831800.
+
+\begin{figure}[H]
+\centering
+\begin{multicols}{5}
+$ 2 \rightarrow 3 $ : 50
+
+$ 5 \rightarrow 1 $ : 40
+
+$ 5 \rightarrow 8 $ : 10
+
+$ 7 \rightarrow 6 $ : 70
+
+$ 7 \rightarrow 8 $ : 35
+
+$ 7 \rightarrow 19 $ : 50
+$ 11 \rightarrow 10 $ : 25
+$ 12 \rightarrow 8 $ : 10
+$ 13 \rightarrow 12 $ : 75
+$ 13 \rightarrow 14 $ : 80
+$ 13 \rightarrow 15 $ : 35
+$ 17 \rightarrow 16 $ : 40
+$ 17 \rightarrow 18 $ : 80
+$ 17 \rightarrow 20 $ : 40
+$ 22 \rightarrow 15 $ : 50
+$ 22 \rightarrow 28 $ : 70
+$ 23 \rightarrow 24 $ : 45
+$ 28 \rightarrow 27 $ : 30
+$ 30 \rightarrow 40 $ : 90
+$ 31 \rightarrow 34 $ : 75
+$ 31 \rightarrow 44 $ : 50
+$ 34 \rightarrow 33 $ : 40
+$ 35 \rightarrow 41 $ : 20
+$ 36 \rightarrow 25 $ : 40
+$ 36 \rightarrow 26 $ : 75
+$ 38 \rightarrow 37 $ : 35
+$ 38 \rightarrow 39 $ : 25
+$ 40 \rightarrow 29 $ : 55
+$ 45 \rightarrow 2 $ : 85
+$ 45 \rightarrow 5 $ : 75
+$ 45 \rightarrow 9 $ : 70
+$ 46 \rightarrow 7 $ : 180
+$ 46 \rightarrow 17 $ : 225
+$ 47 \rightarrow 4 $ : 40
+$ 47 \rightarrow 32 $ : 65
+$ 47 \rightarrow 43 $ : 35
+$ 48 \rightarrow 11 $ : 80
+$ 48 \rightarrow 13 $ : 235
+$ 48 \rightarrow 30 $ : 150
+$ 48 \rightarrow 31 $ : 205
+$ 48 \rightarrow 42 $ : 25
+$ 49 \rightarrow 21 $ : 30
+$ 49 \rightarrow 22 $ : 140
+$ 49 \rightarrow 23 $ : 110
+$ 50 \rightarrow 35 $ : 80
+$ 50 \rightarrow 36 $ : 165
+$ 50 \rightarrow 38 $ : 120
+\end{multicols}
+\caption{Optimal transportation plan: the flow through each arc in tens of spools}
+\label{flow3-2a}
+\end{figure}
+
+\paragraph{(b)}
+\begin{quote}
+It is observed that unacceptable situations occur when trucks arrive from differ- ent directions at demand locations. Is it possible to make a feasible transporta- tion plan such that all demands are satisfied and the unacceptable situations are avoided? Explain your answer.
+\end{quote}
+
+\paragraph{}
+The total number of spools in stock is equal to the total demand. So each depot has to get rid of all spools. To avoid the unacceptable, each demand location must have exactly one ingoing edge with positive flow. This means that the subgraph of edges with non-zero flow must consist of six disjoint trees rooted at the depots. All arcs of the trees must be oriented away from root. The sum of demands in a tree must be equal to the number of spools in stock of its depot.
+
+\paragraph{}
+Let's show it's impossible for the given network. Consider the depot B. It has capacity 405. Vertices 7, 16,17,18,19,20 are only reachable from B, so they have to belong to B's tree. This leaves $405-25-40-65-80-50-40=105$ units of capacity in B. It can be seen that it's impossible to add some vertices with total demand $105$ to the tree (there are so few combinations they can be checked manually).
+
+\paragraph{(c)}
+\begin{quote}
+If the answer to the previous question is “no”, how will you change the invento- ries (supplies) in the various depots so that such a plan can be constructed.
+\end{quote}
+
+\paragraph{}
+Let's find the minimum possible total cost that can be obtained in this network by adding spools to depots. To do this we increase source capacities to infinity and find the minimum cost maximum flow. Then we can find the requred number of spools in each depot as the flow through the edge from source to this depot. Such flow will always consist of disjoint trees (if we omit the source) because it essentially becomes the tree of shortest paths from source to all other vertices.
+
+\paragraph{}
+The resulting increased supplies are shown in table \ref{increased-supplies}. The resulting flow is shown on figure \ref{flow3-2c}. The resulting total cost is \texteuro 776650.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+A & B & C & D & E & F \\ \hline
+365 & 450 & 180 & 695 & 405 & 400  \\ \hline
+\end{tabular}
+\caption{Increased supplies in each depot in tens of spools}
+\label{increased-supplies}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\begin{multicols}{5}
+$ 2 \rightarrow 3 $ : 50
+
+$ 5 \rightarrow 1 $ : 40
+
+$ 5 \rightarrow 8 $ : 55
+
+$ 7 \rightarrow 6 $ : 70
+
+$ 7 \rightarrow 19 $ : 50
+$ 9 \rightarrow 10 $ : 90
+$ 10 \rightarrow 12 $ : 65
+$ 17 \rightarrow 16 $ : 40
+$ 17 \rightarrow 18 $ : 80
+$ 17 \rightarrow 20 $ : 40
+$ 22 \rightarrow 15 $ : 85
+$ 22 \rightarrow 28 $ : 70
+$ 22 \rightarrow 40 $ : 90
+$ 23 \rightarrow 24 $ : 45
+$ 28 \rightarrow 27 $ : 30
+$ 31 \rightarrow 44 $ : 50
+$ 32 \rightarrow 33 $ : 40
+$ 35 \rightarrow 41 $ : 20
+$ 36 \rightarrow 25 $ : 40
+$ 36 \rightarrow 26 $ : 75
+$ 38 \rightarrow 37 $ : 35
+$ 38 \rightarrow 39 $ : 25
+$ 40 \rightarrow 29 $ : 55
+$ 45 \rightarrow 2 $ : 85
+$ 45 \rightarrow 5 $ : 120
+$ 45 \rightarrow 9 $ : 160
+$ 46 \rightarrow 7 $ : 145
+$ 46 \rightarrow 14 $ : 80
+$ 46 \rightarrow 17 $ : 225
+$ 47 \rightarrow 4 $ : 40
+$ 47 \rightarrow 32 $ : 105
+$ 47 \rightarrow 43 $ : 35
+$ 48 \rightarrow 11 $ : 55
+$ 48 \rightarrow 13 $ : 45
+$ 48 \rightarrow 30 $ : 60
+$ 48 \rightarrow 31 $ : 130
+$ 48 \rightarrow 42 $ : 25
+$ 49 \rightarrow 21 $ : 30
+$ 49 \rightarrow 22 $ : 265
+$ 49 \rightarrow 23 $ : 110
+$ 50 \rightarrow 34 $ : 35
+$ 50 \rightarrow 35 $ : 80
+$ 50 \rightarrow 36 $ : 165
+$ 50 \rightarrow 38 $ : 120
+\end{multicols}
+\caption{Optimal transportation plan: the flow through each arc in tens of spools}
+\label{flow3-2c}
+\end{figure}
+
+\paragraph{(d)}
+\begin{quote}
+Also try to construct a transportation plan without the unacceptable situations, by changing the traffic direction on certain road segments.
+\end{quote}
+
+\paragraph{}
+
