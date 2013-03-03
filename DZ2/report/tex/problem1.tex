@@ -22,7 +22,13 @@ Since more spools are produced than are demanded, the company also wants to know
 \end{quote}
 
 \paragraph{}
-We find the minimum cost maximum flow in a network obtained from figure \ref{network3-1}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-1}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. The number of spools left at factories can be found as the capacities of edges from source in residual network. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied). The flow (which is also a transportation plan) is shown in figure \ref{flow3-1a}. The minimum total cost is \texteuro 578535. The number of remaining spools is shown in table \ref{spools-left}.
+We find the minimum cost maximum flow in a network obtained from figure \ref{network3-1}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-1}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. The number of spools left at factories can be found as the capacities of edges from source in residual network. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied).
+
+\paragraph{}
+For finding the minimum cost maximum flow we use Ford-Fulkerson-like algorithm that on each step finds the cheapest augmenting path using Ford-Bellman algorithm. We could have used Dijkstra's algorithm with potentials, but it would be an overkill for such small graph.
+
+\paragraph{}
+The flow (which is also a transportation plan) is shown in figure \ref{flow3-1a}. The minimum total cost is \texteuro 578535. The number of remaining spools is shown in table \ref{spools-left}.
 
 \begin{figure}[H]
 \centering

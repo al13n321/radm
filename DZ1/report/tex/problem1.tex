@@ -4,7 +4,7 @@
 \begin{quote}
 The Services Department of GTC manages the relationships between the company and its customers. It handles all interactions with private customers ranging from new subscriptions and connections through maintenance and repair work. Recently, the company has launched the project Gold Service, which includes a 24 hours service. This means that if a customer reports a problem, then a technician makes a site call within 24 hours. Technicians move from one customer to another, and need not go back to the facility where the technician is stationed, except at the end of the working day. The calculation of shortest or fastest routes between two customer sites is not easy in practice, mainly because the circumstances in the road network change rapidly and regularly. Therefore, the company is testing a system which advises a technician about the route he has to take to the next customer, just after he has finished serving a customer.
 
-The road map of the city is schematically depicted in Figure 1.10. There are 50 customer sites denoted by the dots, and labeled 1, ..., 50. A line denotes a direct road connection between two sites. Attached to each road is a number, denoting the distance between the connected sites in kilometers. For instance, the distance between site 22 and site 27 is 3.9 kilometers.
+The road map of the city is schematically depicted in Figure \ref{figure1-10}. There are 50 customer sites denoted by the dots, and labeled 1, ..., 50. A line denotes a direct road connection between two sites. Attached to each road is a number, denoting the distance between the connected sites in kilometers. For instance, the distance between site 22 and site 27 is 3.9 kilometers.
 \end{quote}
 
 \paragraph{}
@@ -54,14 +54,14 @@ Let edge weights be equal to lengths in kilometers from figure \ref{figure1-10}.
 \end{table}
 
 \begin{quote}
-In order to obtain an idea about the time required to go from one location to another, we can also make use of a road map in which the travel times are given for each connected pair of locations. We have depicted the schematic road map in Figure 1.11 with the travel times in minutes. Travel times are of course less precisely determined than distances, and may also change suddenly. These uncertainty aspects have to be taken into account when performing realistic calculations based on them.
+In order to obtain an idea about the time required to go from one location to another, we can also make use of a road map in which the travel times are given for each connected pair of locations. We have depicted the schematic road map in Figure \ref{figure1-11} with the travel times in minutes. Travel times are of course less precisely determined than distances, and may also change suddenly. These uncertainty aspects have to be taken into account when performing realistic calculations based on them.
 \end{quote}
 
 \subsection{Problem 1.2. What Happens If}
 
 \paragraph{}
 \begin{quote}
-Use the time network depicted in Figure 1.11 to respond to the following. Unless specified each part is independent of the others.
+Use the time network depicted in Figure \ref{figure1-11} to respond to the following. Unless specified each part is independent of the others.
 \end{quote}
 
 \begin{figure}[H]
@@ -73,7 +73,7 @@ Use the time network depicted in Figure 1.11 to respond to the following. Unless
 
 \paragraph{(a)}
 \begin{quote}
-Calculate quickest routes (in minutes) between the pairs of sites from Prob- lem 1.1.
+Calculate quickest routes (in minutes) between the pairs of sites from Problem 1.1.
 \end{quote}
 
 \paragraph{}
@@ -196,7 +196,7 @@ Now suppose we increased the weight of 8---10 to $x+u+\varepsilon$. There exists
 \paragraph{(f)}
 
 \begin{quote}
-Determine a second quickest route between 8 and 31 for the network in Figure 1.11. Show that the “length” (in minutes) of this route can also be determined by using tolerance intervals.
+Determine a second quickest route between 8 and 31 for the network in Figure \ref{figure1-11}. Show that the “length” (in minutes) of this route can also be determined by using tolerance intervals.
 \end{quote}
 
 \paragraph{}
@@ -342,9 +342,9 @@ Researchers & 9 & 7 & 6 & 12 & 11 & 8 & 13 & 11 & 10 & 10 \\ \hline
 \subsection{Problem 1.4. Subsidizing Connections}
 
 \begin{quote}
-In order to test the new cable, the company has decided to connect the university, located at site 3 of the network of Figure 1.10, to the R\&D building of GTC, located at site 46, using its cable network.
+In order to test the new cable, the company has decided to connect the university, located at site 3 of the network of Figure \ref{figure1-10}, to the R\&D building of GTC, located at site 46, using its cable network.
 The City Council desires that two clinics associated with the city hospital, which are located at sites 8 and 20, be connected by a high capacity cable. So it wants to find out how much subsidy to give to GTC such that it is profitable for GTC to connect the two sites 8 and 20 with the new cable.
-The City Council has decided to subsidize the laying of cable on the paths 8 – 10 – 16 – 20 and 29 – 28 – 31 – 34. The cables on either of the two paths cannot be interrupted. In order to minimize the disruption to the traffic circulation, it has also decided that work on laying cable on the paths 8 – 10 – 16 – 20, 16 – 19 – 26 – 38 – 37 – 42, 29 – 28 – 31 – 34 – 39 – 27 – 22 – 12 – 6, and 48 – 45 – 44 – 40 – 32 – 33 has to be executed in the directions 8 $\rightarrow$ 10 $\rightarrow$ 16 $\rightarrow$ 20, 16 $\rightarrow$ 19 $\rightarrow$ 26 $\rightarrow$ 38 $\rightarrow$ 37 $\rightarrow$ 42, 29 $\rightarrow$ 28 $\rightarrow$ 31 $\rightarrow$ 34 $\rightarrow$ 39 $\rightarrow$ 27 $\rightarrow$ 22 $\rightarrow$ 12 $\rightarrow$ 6, and 48 $\rightarrow$ 45  $\rightarrow$ 44 $\rightarrow$ 40 $\rightarrow$ 32 $\rightarrow$ 33, respectively. Actually, the subsidy also yields some extra profit for GTC. The construction costs are a multiple of the distances from Figure 1.10, in \texteuro 1,000’s per km. The subsidies on road segment 8 $\rightarrow$ 10 is \texteuro 3,500, on road segment 29 $\rightarrow$ 28 is \texteuro 6,800, on road segment 10 $\rightarrow$ 16 is \texteuro 6,600, on road segment 28 $\rightarrow$ 31 is \texteuro 2,900, on road segment 16 $\rightarrow$ 20 is \texteuro 4,900, and on road segment 31 $\rightarrow$ 34 is \texteuro 2,200.
+The City Council has decided to subsidize the laying of cable on the paths 8 – 10 – 16 – 20 and 29 – 28 – 31 – 34. The cables on either of the two paths cannot be interrupted. In order to minimize the disruption to the traffic circulation, it has also decided that work on laying cable on the paths 8 – 10 – 16 – 20, 16 – 19 – 26 – 38 – 37 – 42, 29 – 28 – 31 – 34 – 39 – 27 – 22 – 12 – 6, and 48 – 45 – 44 – 40 – 32 – 33 has to be executed in the directions 8 $\rightarrow$ 10 $\rightarrow$ 16 $\rightarrow$ 20, 16 $\rightarrow$ 19 $\rightarrow$ 26 $\rightarrow$ 38 $\rightarrow$ 37 $\rightarrow$ 42, 29 $\rightarrow$ 28 $\rightarrow$ 31 $\rightarrow$ 34 $\rightarrow$ 39 $\rightarrow$ 27 $\rightarrow$ 22 $\rightarrow$ 12 $\rightarrow$ 6, and 48 $\rightarrow$ 45  $\rightarrow$ 44 $\rightarrow$ 40 $\rightarrow$ 32 $\rightarrow$ 33, respectively. Actually, the subsidy also yields some extra profit for GTC. The construction costs are a multiple of the distances from Figure \ref{figure1-10}, in \texteuro 1,000’s per km. The subsidies on road segment 8 $\rightarrow$ 10 is \texteuro 3,500, on road segment 29 $\rightarrow$ 28 is \texteuro 6,800, on road segment 10 $\rightarrow$ 16 is \texteuro 6,600, on road segment 28 $\rightarrow$ 31 is \texteuro 2,900, on road segment 16 $\rightarrow$ 20 is \texteuro 4,900, and on road segment 31 $\rightarrow$ 34 is \texteuro 2,200.
 \end{quote}
 
 \paragraph{(a)}
