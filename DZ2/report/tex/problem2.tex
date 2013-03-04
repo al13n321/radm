@@ -18,8 +18,14 @@ Determine a transportation plan such that all demands are satisfied at minimum t
 \end{quote}
 
 \paragraph{}
-% TODO: explain why THIS problem is equivalent to the problem 3.1. Copy and paste some of the information if needed.
-We consider a graph obtained from figure \ref{network3-2} in the same way as in problem 3.1. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied). The flow (which is also a transportation plan) is shown in figure \ref{flow3-2a}. The minimum total cost is \texteuro 831,800.
+\paragraph{}
+We find the minimum cost maximum flow in a network obtained from figure \ref{network3-2}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-2}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied).
+
+\paragraph{}
+Each arc (except the arcs incident to sink or source) in our graph corresponds to a road. The flow through an arc in our graph corresponds to the number of spools transported through it. The arcs from source spread incoming flow among supplies and limit the flow from each supply. The arcs to sink aggregate the flow from demand locations and limit the demand of each location. We consider a transportation plan to be an assignment of flow values to the roads.
+
+\paragraph{}
+The flow (which is also a transportation plan) is shown in figure \ref{flow3-2a}. The minimum total cost is \texteuro 831,800.
 
 \begin{figure}[H]
 \centering

@@ -22,9 +22,10 @@ Since more spools are produced than are demanded, the company also wants to know
 \end{quote}
 
 \paragraph{}
-% TODO: detailed explanation: why this mathematical formulation of the stated problem is equivalent to the real-world one.
-% For example: what is cut equivalent in real life, justify the choosing of sink and source, explain why THIS solution is mimimal cost.
 We find the minimum cost maximum flow in a network obtained from figure \ref{network3-1}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-1}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. The number of spools left at factories can be found as the capacities of edges from source in residual network. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied).
+
+\paragraph{}
+Each arc (except the arcs incident to sink or source) in our graph corresponds to a road. The flow through an arc in our graph corresponds to the number of spools transported through it. The arcs from source spread incoming flow among depots and limit the flow from each depot. The arcs to sink aggregate the flow from demand locations and limit the demand of each location. We consider a transportation plan to be an assignment of flow values to the roads.
 
 \paragraph{}
 For finding the minimum cost maximum flow we use Ford-Fulkerson-like algorithm that on each step finds the cheapest augmenting path using Ford-Bellman algorithm. We could have used Dijkstra's algorithm with potentials, but it would be an overkill for such small graph.
@@ -110,8 +111,7 @@ GTC is wondering whether the change of one road segment into a toll road will af
 \end{quote}
 
 \paragraph{}
-% TODO: explain why increasing the cost by the upper tolerance leaves it in the solution
-We need to find the upper tolerance of some edges. To find the upper tolerance of an edge we set its capacity to the flow through it minus one and find the minimum cost maximum flow again. The difference between costs is the upper tolerance.
+We need to find the upper tolerance of some edges (by definition of upper tolerance). To find the upper tolerance of an edge we set its capacity to the flow through it minus one and find the minimum cost maximum flow again. The difference between costs is the upper tolerance.
 
 \paragraph{}
 The maximum toll fees are given in table \ref{toll-fees}.
@@ -137,8 +137,7 @@ There is also a possibility that the direction of traffic on the road segment 33
 \end{quote}
 
 \paragraph{}
-% TODO: explain the changes to the algorithm/solution/graph that appeared after adding new constraints.
-The new plan is shown in figure \ref{flow3-1c}. Its cost is \texteuro 658,175.
+We reversed the arc and found the flow again. The new plan is shown in figure \ref{flow3-1c}. Its cost is \texteuro 658,175.
 
 \begin{figure}[H]
 \centering
