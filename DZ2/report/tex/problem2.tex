@@ -22,10 +22,10 @@ Determine a transportation plan such that all demands are satisfied at minimum t
 We find the minimum cost maximum flow in a network obtained from figure \ref{network3-2}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-2}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied).
 
 \paragraph{}
-Each arc (except the arcs incident to sink or source) in our graph corresponds to a road. The flow through an arc in our graph corresponds to the number of spools transported through it. The arcs from source spread incoming flow among supplies and limit the flow from each supply. The arcs to sink aggregate the flow from demand locations and limit the demand of each location. We consider a transportation plan to be an assignment of flow values to the roads.
+Each arc (except the arcs incident to sink or source) in our graph corresponds to a road. The flow through an arc in our graph corresponds to the number of spools transported through it. The arcs from source spread incoming flow among depots and limit the flow from each depot. The arcs to sink aggregate the flow from demand locations and limit the demand of each location. The flow through edges can be used as a transportation plan right away. It can be more convenient to have a transportation plan as a list of routes from source depots to demand locations, so that a truck can be assigned to each route. We found both representations. We obtained the second representation from the first one using greedy algorithm.
 
 \paragraph{}
-The flow (which is also a transportation plan) is shown in figure \ref{flow3-2a}. The minimum total cost is \texteuro 831,800.
+The flow as a list of flows through edges is shown in figure \ref{flow3-2a}. The transportation plan as a list of routes is shown in table \ref{flow3-2a-paths}. The minimum total cost is \texteuro 831,800.
 
 \begin{figure}[H]
 \centering
@@ -87,6 +87,63 @@ $ 50 \rightarrow 38 $ : 120
 \label{flow3-2a}
 \end{figure}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|l|}
+\hline
+Path & Tens of spools & Cost \\ \hline
+$ A \rightarrow 2 $ & 35 & \texteuro 1085\\ \hline
+$ A \rightarrow 2 \rightarrow 3 $ & 50 & \texteuro 2600\\ \hline
+$ A \rightarrow 5 $ & 25 & \texteuro 475\\ \hline
+$ A \rightarrow 5 \rightarrow 1 $ & 40 & \texteuro 1720\\ \hline
+$ A \rightarrow 5 \rightarrow 8 $ & 10 & \texteuro 410\\ \hline
+$ A \rightarrow 9 $ & 70 & \texteuro 1470\\ \hline
+$ B \rightarrow 7 $ & 25 & \texteuro 275\\ \hline
+$ B \rightarrow 7 \rightarrow 6 $ & 70 & \texteuro 1960\\ \hline
+$ B \rightarrow 7 \rightarrow 8 $ & 35 & \texteuro 1610\\ \hline
+$ B \rightarrow 7 \rightarrow 19 $ & 50 & \texteuro 3100\\ \hline
+$ B \rightarrow 17 $ & 65 & \texteuro 1885\\ \hline
+$ B \rightarrow 17 \rightarrow 16 $ & 40 & \texteuro 1520\\ \hline
+$ B \rightarrow 17 \rightarrow 18 $ & 80 & \texteuro 5280\\ \hline
+$ B \rightarrow 17 \rightarrow 20 $ & 40 & \texteuro 1680\\ \hline
+$ C \rightarrow 4 $ & 40 & \texteuro 1280\\ \hline
+$ C \rightarrow 32 $ & 65 & \texteuro 2665\\ \hline
+$ C \rightarrow 43 $ & 35 & \texteuro 1260\\ \hline
+$ D \rightarrow 11 $ & 55 & \texteuro 1540\\ \hline
+$ D \rightarrow 11 \rightarrow 10 $ & 25 & \texteuro 1250\\ \hline
+$ D \rightarrow 13 $ & 45 & \texteuro 675\\ \hline
+$ D \rightarrow 13 \rightarrow 12 $ & 65 & \texteuro 2860\\ \hline
+$ D \rightarrow 13 \rightarrow 12 \rightarrow 8 $ & 10 & \texteuro 690\\ \hline
+$ D \rightarrow 13 \rightarrow 14 $ & 80 & \texteuro 3840\\ \hline
+$ D \rightarrow 13 \rightarrow 15 $ & 35 & \texteuro 1960\\ \hline
+$ D \rightarrow 30 $ & 60 & \texteuro 1020\\ \hline
+$ D \rightarrow 30 \rightarrow 40 $ & 35 & \texteuro 1680\\ \hline
+$ D \rightarrow 30 \rightarrow 40 \rightarrow 29 $ & 55 & \texteuro 4345\\ \hline
+$ D \rightarrow 31 $ & 80 & \texteuro 2080\\ \hline
+$ D \rightarrow 31 \rightarrow 34 $ & 35 & \texteuro 1750\\ \hline
+$ D \rightarrow 31 \rightarrow 34 \rightarrow 33 $ & 40 & \texteuro 3440\\ \hline
+$ D \rightarrow 31 \rightarrow 44 $ & 50 & \texteuro 2250\\ \hline
+$ D \rightarrow 42 $ & 25 & \texteuro 525\\ \hline
+$ E \rightarrow 21 $ & 30 & \texteuro 870\\ \hline
+$ E \rightarrow 22 $ & 20 & \texteuro 200\\ \hline
+$ E \rightarrow 22 \rightarrow 15 $ & 50 & \texteuro 1650\\ \hline
+$ E \rightarrow 22 \rightarrow 28 $ & 40 & \texteuro 1400\\ \hline
+$ E \rightarrow 22 \rightarrow 28 \rightarrow 27 $ & 30 & \texteuro 1290\\ \hline
+$ E \rightarrow 23 $ & 65 & \texteuro 2145\\ \hline
+$ E \rightarrow 23 \rightarrow 24 $ & 45 & \texteuro 3105\\ \hline
+$ F \rightarrow 35 $ & 60 & \texteuro 840\\ \hline
+$ F \rightarrow 35 \rightarrow 41 $ & 20 & \texteuro 760\\ \hline
+$ F \rightarrow 36 $ & 50 & \texteuro 600\\ \hline
+$ F \rightarrow 36 \rightarrow 25 $ & 40 & \texteuro 1520\\ \hline
+$ F \rightarrow 36 \rightarrow 26 $ & 75 & \texteuro 3600\\ \hline
+$ F \rightarrow 38 $ & 60 & \texteuro 1440\\ \hline
+$ F \rightarrow 38 \rightarrow 37 $ & 35 & \texteuro 2030\\ \hline
+$ F \rightarrow 38 \rightarrow 39 $ & 25 & \texteuro 1550\\ \hline
+\end{tabular}
+\caption{Optimal transportation plan decomposed into paths}
+\label{flow3-2a-paths}
+\end{table}
+
 \paragraph{(b)}
 \begin{quote}
 It is observed that unacceptable situations occur when trucks arrive from different directions at demand locations. Is it possible to make a feasible transportation plan such that all demands are satisfied and the unacceptable situations are avoided? Explain your answer.
@@ -107,7 +164,7 @@ If the answer to the previous question is ``no'', how will you change the invent
 Let's find the minimum possible total cost that can be obtained in this network by adding spools to depots. To do this we increase source capacities to infinity and find the minimum cost maximum flow. Then we can find the required number of spools in each depot as the flow through the edge from source to this depot. Such flow will always consist of disjoint trees (if we omit the source) because it essentially becomes the tree of shortest paths from source to all other vertices.
 
 \paragraph{}
-The resulting increased supplies are shown in table \ref{increased-supplies}. The resulting flow is shown on figure \ref{flow3-2c}. The resulting total cost is \texteuro 776,650.
+The resulting increased supplies are shown in table \ref{increased-supplies}. The flow as a list of flows through edges is shown in figure \ref{flow3-2c}. The transportation plan as a list of routes is shown in table \ref{flow3-2c-paths}. The resulting total cost is \texteuro 776,650.
 
 \begin{table}[H]
 \centering
@@ -175,6 +232,60 @@ $ 50 \rightarrow 38 $ : 120
 \caption{Optimal transportation plan: the flow through each arc in tens of spools}
 \label{flow3-2c}
 \end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|l|}
+\hline
+Path & Tens of spools & Cost \\ \hline
+$ A \rightarrow 2 $ & 35 & \texteuro 1085\\ \hline
+$ A \rightarrow 2 \rightarrow 3 $ & 50 & \texteuro 2600\\ \hline
+$ A \rightarrow 5 $ & 25 & \texteuro 475\\ \hline
+$ A \rightarrow 5 \rightarrow 1 $ & 40 & \texteuro 1720\\ \hline
+$ A \rightarrow 5 \rightarrow 8 $ & 55 & \texteuro 2255\\ \hline
+$ A \rightarrow 9 $ & 70 & \texteuro 1470\\ \hline
+$ A \rightarrow 9 \rightarrow 10 $ & 25 & \texteuro 675\\ \hline
+$ A \rightarrow 9 \rightarrow 10 \rightarrow 12 $ & 65 & \texteuro 2535\\ \hline
+$ B \rightarrow 7 $ & 25 & \texteuro 275\\ \hline
+$ B \rightarrow 7 \rightarrow 6 $ & 70 & \texteuro 1960\\ \hline
+$ B \rightarrow 7 \rightarrow 19 $ & 50 & \texteuro 3100\\ \hline
+$ B \rightarrow 14 $ & 80 & \texteuro 2720\\ \hline
+$ B \rightarrow 17 $ & 65 & \texteuro 1885\\ \hline
+$ B \rightarrow 17 \rightarrow 16 $ & 40 & \texteuro 1520\\ \hline
+$ B \rightarrow 17 \rightarrow 18 $ & 80 & \texteuro 5280\\ \hline
+$ B \rightarrow 17 \rightarrow 20 $ & 40 & \texteuro 1680\\ \hline
+$ C \rightarrow 4 $ & 40 & \texteuro 1280\\ \hline
+$ C \rightarrow 32 $ & 65 & \texteuro 2665\\ \hline
+$ C \rightarrow 32 \rightarrow 33 $ & 40 & \texteuro 2680\\ \hline
+$ C \rightarrow 43 $ & 35 & \texteuro 1260\\ \hline
+$ D \rightarrow 11 $ & 55 & \texteuro 1540\\ \hline
+$ D \rightarrow 13 $ & 45 & \texteuro 675\\ \hline
+$ D \rightarrow 30 $ & 60 & \texteuro 1020\\ \hline
+$ D \rightarrow 31 $ & 80 & \texteuro 2080\\ \hline
+$ D \rightarrow 31 \rightarrow 44 $ & 50 & \texteuro 2250\\ \hline
+$ D \rightarrow 42 $ & 25 & \texteuro 525\\ \hline
+$ E \rightarrow 21 $ & 30 & \texteuro 870\\ \hline
+$ E \rightarrow 22 $ & 20 & \texteuro 200\\ \hline
+$ E \rightarrow 22 \rightarrow 15 $ & 85 & \texteuro 2805\\ \hline
+$ E \rightarrow 22 \rightarrow 28 $ & 40 & \texteuro 1400\\ \hline
+$ E \rightarrow 22 \rightarrow 28 \rightarrow 27 $ & 30 & \texteuro 1290\\ \hline
+$ E \rightarrow 22 \rightarrow 40 $ & 35 & \texteuro 1365\\ \hline
+$ E \rightarrow 22 \rightarrow 40 \rightarrow 29 $ & 55 & \texteuro 3850\\ \hline
+$ E \rightarrow 23 $ & 65 & \texteuro 2145\\ \hline
+$ E \rightarrow 23 \rightarrow 24 $ & 45 & \texteuro 3105\\ \hline
+$ F \rightarrow 34 $ & 35 & \texteuro 1085\\ \hline
+$ F \rightarrow 35 $ & 60 & \texteuro 840\\ \hline
+$ F \rightarrow 35 \rightarrow 41 $ & 20 & \texteuro 760\\ \hline
+$ F \rightarrow 36 $ & 50 & \texteuro 600\\ \hline
+$ F \rightarrow 36 \rightarrow 25 $ & 40 & \texteuro 1520\\ \hline
+$ F \rightarrow 36 \rightarrow 26 $ & 75 & \texteuro 3600\\ \hline
+$ F \rightarrow 38 $ & 60 & \texteuro 1440\\ \hline
+$ F \rightarrow 38 \rightarrow 37 $ & 35 & \texteuro 2030\\ \hline
+$ F \rightarrow 38 \rightarrow 39 $ & 25 & \texteuro 1550\\ \hline
+\end{tabular}
+\caption{Optimal transportation plan decomposed into paths}
+\label{flow3-2c-paths}
+\end{table}
 
 \paragraph{(d)}
 \begin{quote}

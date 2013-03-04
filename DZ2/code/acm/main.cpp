@@ -202,7 +202,7 @@ struct graph{
 			exit(44);
 	}
 	
-	void write_as_paths(){
+	void write_as_paths(map<int,string> name_map = (map<int,string>())){
 		cout<<"paths:"<<endl;
 		while(true){
 			int v=S;
@@ -232,10 +232,17 @@ struct graph{
 				sum+=e1.cost*mn;
 			}
 			
+			cout<<"$ ";
 			for(int i=1;i<sz(path);++i){
-				cout<<path[i].X<<' ';
+				if(i>1)
+					cout<<" \\rightarrow ";
+				int v=path[i].X;
+				if (name_map.count(v))
+					cout<<name_map[v];
+				else
+					cout<<v;
 			}
-			cout<<" (flow: "<<mn<<", cost: "<<sum<<")"<<endl;
+			cout<<" $ & "<<mn<<" & \\texteuro "<<sum<<"\\\\ \\hline"<<endl;
 		}
 		cout<<endl;
 	}
@@ -392,6 +399,7 @@ void do_31(){
 	cout<<"(a)"<<endl;
 	gr.write_as_edges(gr.min_cost_max_flow());
 	gr.write_flow_from_source();
+	gr.write_as_paths();
 	
 	string s;
 	cin>>s;
@@ -412,10 +420,19 @@ void do_31(){
 	gr.reverse_edge(33, 34);
 	cout<<"(c)"<<endl;
 	gr.write_as_edges(gr.min_cost_max_flow());
+	gr.write_as_paths();
 }
 
 void do_32(){
 	open_files("32");
+	
+	map<int,string> name_map;
+	name_map[45]='A';
+	name_map[46]='B';
+	name_map[47]='C';
+	name_map[48]='D';
+	name_map[49]='E';
+	name_map[50]='F';
 	
 	graph gr0;
 	gr0.read();
@@ -423,17 +440,20 @@ void do_32(){
 	graph gr=gr0;
 	cout<<"(a)"<<endl;
 	gr.write_as_edges(gr.min_cost_max_flow());
+	gr.write_as_paths(name_map);
 	
 	cout<<"(c)"<<endl;
 	gr=gr0;
 	gr.increase_capacity_from_source();
 	gr.write_as_edges(gr.min_cost_max_flow(), true);
 	gr.write_flow_from_source();
+	gr.write_as_paths(name_map);
 	
 	gr=gr0;
 	gr.make_bidirectional();
 	cout<<"(?)"<<endl;
 	gr.write_as_edges(gr.min_cost_max_flow());
+	gr.write_as_paths(name_map);
 }
 
 void do_36(){
@@ -454,8 +474,8 @@ void do_36(){
 
 int main() {
 
-	//do_31();
-	//do_32();
+	do_31();
+	do_32();
 	do_36();
 
 	return 0;

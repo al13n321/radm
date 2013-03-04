@@ -25,13 +25,13 @@ Since more spools are produced than are demanded, the company also wants to know
 We find the minimum cost maximum flow in a network obtained from figure \ref{network3-1}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-1}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. The number of spools left at factories can be found as the capacities of edges from source in residual network. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied).
 
 \paragraph{}
-Each arc (except the arcs incident to sink or source) in our graph corresponds to a road. The flow through an arc in our graph corresponds to the number of spools transported through it. The arcs from source spread incoming flow among depots and limit the flow from each depot. The arcs to sink aggregate the flow from demand locations and limit the demand of each location. We consider a transportation plan to be an assignment of flow values to the roads.
+Each arc (except the arcs incident to sink or source) in our graph corresponds to a road. The flow through an arc in our graph corresponds to the number of spools transported through it. The arcs from source spread incoming flow among depots and limit the flow from each depot. The arcs to sink aggregate the flow from demand locations and limit the demand of each location. The flow through edges can be used as a transportation plan right away. It can be more convenient to have a transportation plan as a list of routes from source depots to demand locations, so that a truck can be assigned to each route. We found both representations. We obtained the second representation from the first one using greedy algorithm.
 
 \paragraph{}
 For finding the minimum cost maximum flow we use Ford-Fulkerson-like algorithm that on each step finds the cheapest augmenting path using Ford-Bellman algorithm. We could have used Dijkstra's algorithm with potentials, but it would be an overkill for such small graph.
 
 \paragraph{}
-The flow (which is also a transportation plan) is shown in figure \ref{flow3-1a}. The minimum total cost is \texteuro 578,535. The number of remaining spools is shown in table \ref{spools-left}.
+The flow as a list of flows through edges is shown in figure \ref{flow3-1a}. The transportation plan as a list of routes is shown in table \ref{flow3-1a-paths}. The minimum total cost is \texteuro 578,535. The number of remaining spools is shown in table \ref{spools-left}.
 
 \begin{figure}[H]
 \centering
@@ -95,6 +95,64 @@ $ 47 \rightarrow 50 $ : 190
 
 \begin{table}[H]
 \centering
+\begin{tabular}{|r|l|l|}
+\hline
+Path & Tens of spools & Cost \\ \hline
+$ 8 \rightarrow 5 $ & 65 & \texteuro 1170\\ \hline
+$ 8 \rightarrow 6 $ & 230 & \texteuro 5980\\ \hline
+$ 8 \rightarrow 7 $ & 405 & \texteuro 8505\\ \hline
+$ 11 \rightarrow 2 $ & 400 & \texteuro 7600\\ \hline
+$ 11 \rightarrow 2 \rightarrow 1 $ & 170 & \texteuro 10370\\ \hline
+$ 11 \rightarrow 2 \rightarrow 3 $ & 95 & \texteuro 3800\\ \hline
+$ 11 \rightarrow 13 $ & 315 & \texteuro 7560\\ \hline
+$ 11 \rightarrow 13 \rightarrow 4 $ & 70 & \texteuro 4410\\ \hline
+$ 21 \rightarrow 15 $ & 365 & \texteuro 8760\\ \hline
+$ 21 \rightarrow 15 \rightarrow 5 $ & 75 & \texteuro 4200\\ \hline
+$ 21 \rightarrow 15 \rightarrow 9 $ & 280 & \texteuro 10640\\ \hline
+$ 21 \rightarrow 20 $ & 180 & \texteuro 3240\\ \hline
+$ 21 \rightarrow 20 \rightarrow 14 $ & 120 & \texteuro 4440\\ \hline
+$ 21 \rightarrow 20 \rightarrow 14 \rightarrow 13 \rightarrow 4 $ & 140 & \texteuro 14560\\ \hline
+$ 21 \rightarrow 20 \rightarrow 19 $ & 145 & \texteuro 6670\\ \hline
+$ 21 \rightarrow 22 $ & 325 & \texteuro 6825\\ \hline
+$ 21 \rightarrow 26 $ & 110 & \texteuro 2970\\ \hline
+$ 21 \rightarrow 26 \rightarrow 27 $ & 410 & \texteuro 27880\\ \hline
+$ 24 \rightarrow 23 $ & 340 & \texteuro 4420\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 $ & 260 & \texteuro 10660\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 \rightarrow 12 $ & 140 & \texteuro 10080\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 \rightarrow 12 \rightarrow 10 $ & 280 & \texteuro 28000\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 \rightarrow 17 $ & 220 & \texteuro 13200\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 \rightarrow 17 \rightarrow 16 $ & 500 & \texteuro 45500\\ \hline
+$ 24 \rightarrow 23 \rightarrow 19 $ & 200 & \texteuro 11400\\ \hline
+$ 24 \rightarrow 25 $ & 170 & \texteuro 3060\\ \hline
+$ 24 \rightarrow 25 \rightarrow 30 $ & 215 & \texteuro 6235\\ \hline
+$ 24 \rightarrow 29 $ & 185 & \texteuro 4440\\ \hline
+$ 33 \rightarrow 28 $ & 165 & \texteuro 5775\\ \hline
+$ 33 \rightarrow 34 $ & 410 & \texteuro 11890\\ \hline
+$ 33 \rightarrow 34 \rightarrow 41 $ & 140 & \texteuro 9240\\ \hline
+$ 33 \rightarrow 34 \rightarrow 41 \rightarrow 46 $ & 150 & \texteuro 13050\\ \hline
+$ 33 \rightarrow 34 \rightarrow 41 \rightarrow 46 \rightarrow 47 $ & 300 & \texteuro 35700\\ \hline
+$ 33 \rightarrow 34 \rightarrow 41 \rightarrow 46 \rightarrow 47 \rightarrow 48 $ & 235 & \texteuro 32900\\ \hline
+$ 33 \rightarrow 34 \rightarrow 41 \rightarrow 46 \rightarrow 47 \rightarrow 50 $ & 185 & \texteuro 27380\\ \hline
+$ 33 \rightarrow 38 $ & 385 & \texteuro 11935\\ \hline
+$ 33 \rightarrow 38 \rightarrow 32 $ & 290 & \texteuro 16530\\ \hline
+$ 33 \rightarrow 38 \rightarrow 39 $ & 250 & \texteuro 13750\\ \hline
+$ 33 \rightarrow 38 \rightarrow 39 \rightarrow 45 $ & 85 & \texteuro 6460\\ \hline
+$ 33 \rightarrow 38 \rightarrow 40 $ & 280 & \texteuro 16520\\ \hline
+$ 36 \rightarrow 35 $ & 185 & \texteuro 5180\\ \hline
+$ 36 \rightarrow 35 \rightarrow 31 $ & 350 & \texteuro 17150\\ \hline
+$ 36 \rightarrow 37 $ & 210 & \texteuro 10500\\ \hline
+$ 36 \rightarrow 37 \rightarrow 44 $ & 135 & \texteuro 9315\\ \hline
+$ 36 \rightarrow 37 \rightarrow 44 \rightarrow 49 $ & 285 & \texteuro 27645\\ \hline
+$ 36 \rightarrow 42 $ & 260 & \texteuro 10660\\ \hline
+$ 36 \rightarrow 42 \rightarrow 43 $ & 320 & \texteuro 19840\\ \hline
+$ 36 \rightarrow 42 \rightarrow 43 \rightarrow 47 \rightarrow 50 $ & 5 & \texteuro 540\\ \hline
+\end{tabular}
+\caption{Optimal transportation plan decomposed into paths}
+\label{flow3-1a-paths}
+\end{table}
+
+\begin{table}[H]
+\centering
 \begin{tabular}{|r|c|c|c|c|c|c|}
 \hline
 factory & 8 & 11 & 21 & 24 & 33 & 36 \\ \hline
@@ -137,7 +195,7 @@ There is also a possibility that the direction of traffic on the road segment 33
 \end{quote}
 
 \paragraph{}
-We reversed the arc and found the flow again. The new plan is shown in figure \ref{flow3-1c}. Its cost is \texteuro 658,175.
+We reversed the arc and found the flow again. The new flow is shown in figure \ref{flow3-1c}. The new transportation plan as a list of routes is shown in table \ref{flow3-1c-paths}. Its cost is \texteuro 658,175.
 
 \begin{figure}[H]
 \centering
@@ -199,3 +257,62 @@ $ 47 \rightarrow 50 $ : 190
 \caption{Optimal transportation plan with reversed arc}
 \label{flow3-1c}
 \end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|r|l|l|}
+\hline
+Path & Tens of spools & Cost \\ \hline
+$ 8 \rightarrow 5 $ & 65 & \texteuro 1170\\ \hline
+$ 8 \rightarrow 6 $ & 230 & \texteuro 5980\\ \hline
+$ 8 \rightarrow 7 $ & 405 & \texteuro 8505\\ \hline
+$ 11 \rightarrow 2 $ & 400 & \texteuro 7600\\ \hline
+$ 11 \rightarrow 2 \rightarrow 1 $ & 170 & \texteuro 10370\\ \hline
+$ 11 \rightarrow 2 \rightarrow 3 $ & 95 & \texteuro 3800\\ \hline
+$ 11 \rightarrow 13 $ & 315 & \texteuro 7560\\ \hline
+$ 11 \rightarrow 13 \rightarrow 4 $ & 70 & \texteuro 4410\\ \hline
+$ 21 \rightarrow 15 $ & 365 & \texteuro 8760\\ \hline
+$ 21 \rightarrow 15 \rightarrow 5 $ & 75 & \texteuro 4200\\ \hline
+$ 21 \rightarrow 15 \rightarrow 9 $ & 280 & \texteuro 10640\\ \hline
+$ 21 \rightarrow 20 $ & 180 & \texteuro 3240\\ \hline
+$ 21 \rightarrow 20 \rightarrow 14 $ & 120 & \texteuro 4440\\ \hline
+$ 21 \rightarrow 20 \rightarrow 14 \rightarrow 13 \rightarrow 4 $ & 140 & \texteuro 14560\\ \hline
+$ 21 \rightarrow 20 \rightarrow 19 $ & 145 & \texteuro 6670\\ \hline
+$ 21 \rightarrow 22 $ & 325 & \texteuro 6825\\ \hline
+$ 21 \rightarrow 26 $ & 110 & \texteuro 2970\\ \hline
+$ 21 \rightarrow 26 \rightarrow 27 $ & 410 & \texteuro 27880\\ \hline
+$ 24 \rightarrow 23 $ & 340 & \texteuro 4420\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 $ & 260 & \texteuro 10660\\ \hline
+$ 24 \rightarrow 23 \rightarrow 18 \rightarrow 12 $ & 110 & \texteuro 7920\\ \hline
+$ 24 \rightarrow 23 \rightarrow 19 $ & 200 & \texteuro 11400\\ \hline
+$ 24 \rightarrow 25 $ & 170 & \texteuro 3060\\ \hline
+$ 24 \rightarrow 25 \rightarrow 30 $ & 215 & \texteuro 6235\\ \hline
+$ 24 \rightarrow 29 $ & 185 & \texteuro 4440\\ \hline
+$ 24 \rightarrow 29 \rightarrow 34 $ & 410 & \texteuro 22140\\ \hline
+$ 24 \rightarrow 29 \rightarrow 34 \rightarrow 41 $ & 140 & \texteuro 12740\\ \hline
+$ 24 \rightarrow 29 \rightarrow 34 \rightarrow 41 \rightarrow 46 $ & 150 & \texteuro 16800\\ \hline
+$ 24 \rightarrow 29 \rightarrow 34 \rightarrow 41 \rightarrow 46 \rightarrow 47 $ & 300 & \texteuro 43200\\ \hline
+$ 24 \rightarrow 29 \rightarrow 34 \rightarrow 41 \rightarrow 46 \rightarrow 47 \rightarrow 48 $ & 235 & \texteuro 38775\\ \hline
+$ 24 \rightarrow 29 \rightarrow 34 \rightarrow 41 \rightarrow 46 \rightarrow 47 \rightarrow 50 $ & 185 & \texteuro 32005\\ \hline
+$ 33 \rightarrow 28 $ & 165 & \texteuro 5775\\ \hline
+$ 33 \rightarrow 28 \rightarrow 17 $ & 220 & \texteuro 18920\\ \hline
+$ 33 \rightarrow 28 \rightarrow 17 \rightarrow 16 $ & 500 & \texteuro 58500\\ \hline
+$ 33 \rightarrow 28 \rightarrow 17 \rightarrow 16 \rightarrow 12 $ & 30 & \texteuro 4620\\ \hline
+$ 33 \rightarrow 28 \rightarrow 17 \rightarrow 16 \rightarrow 12 \rightarrow 10 $ & 280 & \texteuro 50960\\ \hline
+$ 33 \rightarrow 38 $ & 385 & \texteuro 11935\\ \hline
+$ 33 \rightarrow 38 \rightarrow 32 $ & 290 & \texteuro 16530\\ \hline
+$ 33 \rightarrow 38 \rightarrow 39 $ & 250 & \texteuro 13750\\ \hline
+$ 33 \rightarrow 38 \rightarrow 39 \rightarrow 45 $ & 85 & \texteuro 6460\\ \hline
+$ 33 \rightarrow 38 \rightarrow 40 $ & 280 & \texteuro 16520\\ \hline
+$ 36 \rightarrow 35 $ & 185 & \texteuro 5180\\ \hline
+$ 36 \rightarrow 35 \rightarrow 31 $ & 350 & \texteuro 17150\\ \hline
+$ 36 \rightarrow 37 $ & 210 & \texteuro 10500\\ \hline
+$ 36 \rightarrow 37 \rightarrow 44 $ & 135 & \texteuro 9315\\ \hline
+$ 36 \rightarrow 37 \rightarrow 44 \rightarrow 49 $ & 285 & \texteuro 27645\\ \hline
+$ 36 \rightarrow 42 $ & 260 & \texteuro 10660\\ \hline
+$ 36 \rightarrow 42 \rightarrow 43 $ & 320 & \texteuro 19840\\ \hline
+$ 36 \rightarrow 42 \rightarrow 43 \rightarrow 47 \rightarrow 50 $ & 5 & \texteuro 540\\ \hline
+\end{tabular}
+\caption{Optimal transportation plan decomposed into paths}
+\label{flow3-1c-paths}
+\end{table}
