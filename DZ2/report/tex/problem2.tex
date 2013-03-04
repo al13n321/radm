@@ -9,7 +9,7 @@
 
 \paragraph{}
 \begin{quote}
-In another country GTC has to deal with similar questions as in Problem 3.1. In Figure 3.14 the road map for this country is depicted with 50 locations. There are six cable depots, labeled A, B, C, D, E, and F. All numbers in this figure are given in units of ten spools. The inventories at the various depots are the positive numbers next to the depot labels. For instance, in depot C there are 1,400 cable spools in stock. The locations with labels 1,~\dots,~44 are points where cable is needed, so called demand locations. The numbers next to these labels (with a negative sign) refer to the number of spools demanded at these points. For instance, 650 spools needed at location 17. The numbers attached to the road segments are the transportation costs (in \texteuro 10 units). For instance, the cost of transporting ten spools with one truck is \texteuro 290 on the road segment 22 $\rightarrow$ 40.
+In another country GTC has to deal with similar questions as in Problem 3.1. In Figure \ref{network3-2} the road map for this country is depicted with 50 locations. There are six cable depots, labeled A, B, C, D, E, and F. All numbers in this figure are given in units of ten spools. The inventories at the various depots are the positive numbers next to the depot labels. For instance, in depot C there are 1,400 cable spools in stock. The locations with labels 1,~\dots,~44 are points where cable is needed, so called demand locations. The numbers next to these labels (with a negative sign) refer to the number of spools demanded at these points. For instance, 650 spools needed at location 17. The numbers attached to the road segments are the transportation costs (in \texteuro 10 units). For instance, the cost of transporting ten spools with one truck is \texteuro 290 on the road segment 22 $\rightarrow$ 40.
 \end{quote}
 
 \paragraph{(a)}
@@ -18,7 +18,8 @@ Determine a transportation plan such that all demands are satisfied at minimum t
 \end{quote}
 
 \paragraph{}
-We consider a graph obtained from figure \ref{network3-2} in the same way as in problem 3.1. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied). The flow (which is also a transportation plan) is shown in figure \ref{flow3-2a}. The minimum total cost is \texteuro 831800.
+% TODO: explain why THIS problem is equivalent to the problem 3.1. Copy and paste some of the information if needed.
+We consider a graph obtained from figure \ref{network3-2} in the same way as in problem 3.1. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied). The flow (which is also a transportation plan) is shown in figure \ref{flow3-2a}. The minimum total cost is \texteuro 831,800.
 
 \begin{figure}[H]
 \centering
@@ -82,7 +83,7 @@ $ 50 \rightarrow 38 $ : 120
 
 \paragraph{(b)}
 \begin{quote}
-It is observed that unacceptable situations occur when trucks arrive from differ- ent directions at demand locations. Is it possible to make a feasible transporta- tion plan such that all demands are satisfied and the unacceptable situations are avoided? Explain your answer.
+It is observed that unacceptable situations occur when trucks arrive from different directions at demand locations. Is it possible to make a feasible transportation plan such that all demands are satisfied and the unacceptable situations are avoided? Explain your answer.
 \end{quote}
 
 \paragraph{}
@@ -93,14 +94,14 @@ Let's show it's impossible for the given network. Consider the depot B. It has c
 
 \paragraph{(c)}
 \begin{quote}
-If the answer to the previous question is “no”, how will you change the invento- ries (supplies) in the various depots so that such a plan can be constructed.
+If the answer to the previous question is ``no'', how will you change the inventories (supplies) in the various depots so that such a plan can be constructed.
 \end{quote}
 
 \paragraph{}
-Let's find the minimum possible total cost that can be obtained in this network by adding spools to depots. To do this we increase source capacities to infinity and find the minimum cost maximum flow. Then we can find the requred number of spools in each depot as the flow through the edge from source to this depot. Such flow will always consist of disjoint trees (if we omit the source) because it essentially becomes the tree of shortest paths from source to all other vertices.
+Let's find the minimum possible total cost that can be obtained in this network by adding spools to depots. To do this we increase source capacities to infinity and find the minimum cost maximum flow. Then we can find the required number of spools in each depot as the flow through the edge from source to this depot. Such flow will always consist of disjoint trees (if we omit the source) because it essentially becomes the tree of shortest paths from source to all other vertices.
 
 \paragraph{}
-The resulting increased supplies are shown in table \ref{increased-supplies}. The resulting flow is shown on figure \ref{flow3-2c}. The resulting total cost is \texteuro 776650.
+The resulting increased supplies are shown in table \ref{increased-supplies}. The resulting flow is shown on figure \ref{flow3-2c}. The resulting total cost is \texteuro 776,650.
 
 \begin{table}[H]
 \centering
@@ -175,10 +176,10 @@ Also try to construct a transportation plan without the unacceptable situations,
 \end{quote}
 
 \paragraph{}
-Consider the following problem. We have a network, where some vertices are sources and all the other vertices are sinks. The sources and sinks have capacities, and the total capacity of sources is equal to the total capacity of sinks. The edges have no orientation and cost and have infinite capacity. We need to find a flow saturating all sources and sinks sich that no sink has more than one ingoing edge with positive flow. This problem is equivalent to the one we need to solve.
+Consider the following problem. We have a network, where some vertices are sources and all the other vertices are sinks. The sources and sinks have capacities, and the total capacity of sources is equal to the total capacity of sinks. The edges have no orientation and cost and have infinite capacity. We need to find a flow saturating all sources and sinks such that no sink has more than one ingoing edge with positive flow. This problem is equivalent to the one we need to solve.
 
 \paragraph{}
-This problem (more precisely, checking whether a solution exists) is NP-complete. To prove it we can reduce an NP-complete case of knapsack problem to this problem. Suppose we have a multiset $S$ of size $n$ of integers and another integer $x$. The problem is to check if $x$ is representible as a sum of some subset of $S$. This problem is known to be NP-complete. Consider a network with $n$ sinks and two sources. The capacities of sinks are equal to the values in $S$. The capacities of sources are $x$ and $\sum S_i$. There is an edge between each source and each sink. Our problem on this graph is obvoiusly equivalent to the stated knapsack problem. This means our problem is NP-complete.
+This problem (more precisely, checking whether a solution exists) is NP-complete. To prove it we can reduce an NP-complete case of knapsack problem to this problem. Suppose we have a multiset $S$ of size $n$ of integers and another integer $x$. The problem is to check if $x$ is representable as a sum of some subset of $S$. This problem is known to be NP-complete. Consider a network with $n$ sinks and two sources. The capacities of sinks are equal to the values in $S$. The capacities of sources are $x$ and $\sum S_i$. There is an edge between each source and each sink. Our problem on this graph is obviously equivalent to the stated knapsack problem. This means our problem is NP-complete.
 
 \paragraph{}
 Probably for the given graph it's possible to find a solution by hand, but we were unable to do it.

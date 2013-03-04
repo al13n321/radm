@@ -4,9 +4,9 @@
 
 \paragraph{}
 \begin{quote}
-GTC manufactures its network cables at six different factories in the country. From these factories, the cables are transported to the 44 cable depots, which are ware- houses in different parts of the country. From the cable depots the cables are trans- ported to the places were they are actually demanded.
-Figure 3.13 contains a schematic road map of 50 locations, labeled 1, ..., 50. Factories where the network cables are manufactured are located in the locations 8, 11, 21, 24, 33, and 36. After production, the cable is stored on spools. The to- tal production of each factory is given in units of ten cable spools. This number is given next to the factory location in Figure 3.13. The remaining 44 locations in Fig- ure 3.13 refer to the 44 cable depots, where the cable spools are stored until they are needed. The demand of the various depots is the number next to the correspond- ing node in Figure 3.13 (also in units of ten spools, and with a negative sign). The spools are transported by means of trucks which always carry precisely ten spools; the transportation costs per truck, called “truck costs”, are shown as numbers next to the corresponding road segments in the network of Figure 3.13.
-\eng{quote}
+GTC manufactures its network cables at six different factories in the country. From these factories, the cables are transported to the 44 cable depots, which are warehouses in different parts of the country. From the cable depots the cables are transported to the places were they are actually demanded.
+Figure \ref{network3-1} contains a schematic road map of 50 locations, labeled 1, ..., 50. Factories where the network cables are manufactured are located in the locations 8, 11, 21, 24, 33, and 36. After production, the cable is stored on spools. The total production of each factory is given in units of ten cable spools. This number is given next to the factory location in Figure \ref{network3-1}. The remaining 44 locations in Figure \ref{network3-1} refer to the 44 cable depots, where the cable spools are stored until they are needed. The demand of the various depots is the number next to the corresponding node in Figure \ref{network3-1} (also in units of ten spools, and with a negative sign). The spools are transported by means of trucks which always carry precisely ten spools; the transportation costs per truck, called ``truck costs'', are shown as numbers next to the corresponding road segments in the network of Figure \ref{network3-1}.
+\end{quote}
 
 \begin{figure}[H]
 	\centering
@@ -22,13 +22,15 @@ Since more spools are produced than are demanded, the company also wants to know
 \end{quote}
 
 \paragraph{}
+% TODO: detailed explanation: why this mathematical formulation of the stated problem is equivalent to the real-world one.
+% For example: what is cut equivalent in real life, justify the choosing of sink and source, explain why THIS solution is mimimal cost.
 We find the minimum cost maximum flow in a network obtained from figure \ref{network3-1}. The capacities of arcs are infinite, the costs are taken from figure \ref{network3-1}. To 50 existing vertices we added a source and a sink. We added arcs from source to the 6 depots with zero costs and capacities equal to the number of spools in depots. We added arcs from all demand locations to sink with zero costs and capacities equal to the number of demanded spools. The number of spools left at factories can be found as the capacities of edges from source in residual network. We found minimum cost maximum flow and checked that it has saturated all arcs to the sink (i.e. all demand is satisfied).
 
 \paragraph{}
 For finding the minimum cost maximum flow we use Ford-Fulkerson-like algorithm that on each step finds the cheapest augmenting path using Ford-Bellman algorithm. We could have used Dijkstra's algorithm with potentials, but it would be an overkill for such small graph.
 
 \paragraph{}
-The flow (which is also a transportation plan) is shown in figure \ref{flow3-1a}. The minimum total cost is \texteuro 578535. The number of remaining spools is shown in table \ref{spools-left}.
+The flow (which is also a transportation plan) is shown in figure \ref{flow3-1a}. The minimum total cost is \texteuro 578,535. The number of remaining spools is shown in table \ref{spools-left}.
 
 \begin{figure}[H]
 \centering
@@ -108,6 +110,7 @@ GTC is wondering whether the change of one road segment into a toll road will af
 \end{quote}
 
 \paragraph{}
+% TODO: explain why increasing the cost by the upper tolerance leaves it in the solution
 We need to find the upper tolerance of some edges. To find the upper tolerance of an edge we set its capacity to the flow through it minus one and find the minimum cost maximum flow again. The difference between costs is the upper tolerance.
 
 \paragraph{}
@@ -134,7 +137,8 @@ There is also a possibility that the direction of traffic on the road segment 33
 \end{quote}
 
 \paragraph{}
-The new plan is shown in figure \ref{flow3-1c}. Its cost is \texteuro 658175.
+% TODO: explain the changes to the algorithm/solution/graph that appeared after adding new constraints.
+The new plan is shown in figure \ref{flow3-1c}. Its cost is \texteuro 658,175.
 
 \begin{figure}[H]
 \centering
