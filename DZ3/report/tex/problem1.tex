@@ -1,0 +1,181 @@
+\section{Exercises on Matching Problems}
+
+\subsection{Problem 4.1. Scheduling Technicians}
+
+\paragraph{}
+\begin{quote}
+GTC employs fifteen maintenance technicians who are used to solve problems that
+customers have with their communication devices. The technicians are paid by hours
+of work. All technicians have the same wage per hour, but are not equally qualified
+on all problems. The problems are divided into ten different categories. This morning,
+twenty customers have problems in the categories shown in Table \ref{cuscat}. However
+only fifteen customers can be served, because each technician is assigned to only
+one job. The twenty customers have called in the order 1 through 20, meaning that
+Customer 1 has called first, and Customer 20 called last. The time required by a technician to solve a problem is called the repairing time. Assume that GTC knows the
+repairing times per category and per technician. These times are shown in Table \ref{techcattimes}.
+For example, Technician 2 needs 17 minutes to solve a problem in Category 1. GTC
+wants to serve fifteen customers at minimum technician wage cost.\end{quote}
+
+\begin{table}[H]
+	\centering
+	\caption{Customers and their categories}
+	\begin{tabular}{cc||cc||cc}\hline
+	Customer & Category & Customer & Category & Customer & Category \\ \hline
+	1&1&8&2&15&7\\
+	2&6&9&7&16&9\\
+	3&3&10&4&17&4\\
+	4&7&11&5&18&7\\
+	5&5&12&3&19&2\\
+	6&8&13&9&20&1\\
+	7&9&14&10&&\\ \hline
+	\end{tabular}
+	\label{cuscat}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Repairing times per technician per category}
+	\begin{tabular}{c|*{10}c}\hline
+	\multirow{2}{*}{Technicians} & \multicolumn{10}{|c}{Category} \\ \cline{2-11}
+	& 1&2&3&4&5&6&7&8&9&10\\ \hline
+	1&26&76&159&187&41&45&193&49&174&201\\
+	2&17&91&128&162&50&42&167&38&146&122\\
+	3&28&111&152&145&51&52&212&44&156&221\\
+	4&24&84&155&209&58&44&146&41&122&177\\
+	5&26&85&139&201&66&51&144&44&164&190\\
+	6&21&95&176&197&65&58&196&52&157&209\\
+	7&19&96&173&183&54&50&192&50&97&192\\
+	8&19&84&135&177&52&45&175&42&99&212\\
+	9&17&98&119&178&58&46&194&38&178&158\\
+	10&24&80&109&199&60&50&218&61&142&150\\
+	11&18&88&146&178&57&48&159&48&156&190\\
+	12&28&105&124&158&55&43&150&36&132&183\\
+	13&22&102&129&157&48&57&233&50&158&155\\
+	14&28&110&168&217&48&58&159&47&136&179\\
+	15&24&98&123&181&54&49&112&44&196&135\\ \hline
+	\end{tabular}
+	\label{techcattimes}
+\end{table}
+
+\begin{enumerate}[(a)]
+\item\begin{quote}Assume that the customers are served on a first-call-first-served basis.\end{quote}
+\begin{enumerate}[1.]
+\item\begin{quote}By inspection, how would you assign the fifteen technicians to the customers?
+What is the rationale behind your solution procedure?\end{quote}
+
+	\paragraph{}
+	The immediate solution would be to assign to the current customer the best available technician in customer's problem category. This greedy approach gives optimal solution when there is only one customer and tends to minimize expenses using the best available option at each step. The main advantage of the greedy solution is that it's really fast and easy to implement since all we need to do is to find minimum repairing time among 15 technicians 15 times. The assignment is shown in Table \ref{greedy-1-a}. The total repairing time equals 1,535.
+
+\begin{table}[H]
+	\centering
+	\caption{Greedy assignment for first-call-first-served scheme}
+	\begin{tabular}{|c|c|c|}\hline
+	Customer & Technician & Repairing time \\ \hline
+1 & 2 & 17 \\
+2 & 12 & 43 \\
+3 & 10 & 109 \\
+4 & 15 & 112 \\
+5 & 1 & 41 \\
+6 & 9 & 38 \\
+7 & 7 & 97 \\
+8 & 4 & 84 \\
+9 & 5 & 144 \\
+10 & 3 & 145 \\
+11 & 13 & 48 \\
+12 & 8 & 135 \\
+13 & 14 & 136 \\
+14 & 11 & 190 \\
+15 & 6 & 196 \\
+\hline
+	\end{tabular}
+	\label{greedy-1-a}
+\end{table}
+
+\item\begin{quote}Explain why your solution need not be optimal.\end{quote}
+
+	\paragraph{}
+	The greedy approach doesn't necessary lead to an optimal solution. On the contrary, sometimes it can lead to the solution that is very far from being optimal. But nevertheless the greedy approach is a popular choice when the expenses of finding an optimal solution are higher than possible excess cost of a greedy strategy.
+
+\item\begin{quote}What is an optimal assignment of technicians to customers, and what is the
+total repairing time?\end{quote}
+
+	\paragraph{}
+	In order to find an optimal solution we should solve the so-called ``Assignment Problem'' (AP) \ref{burkard12}.
+
+	\paragraph{}
+	Let's consider a graph with vertices corresponding to technicians and customers. Between each pair of vertices where one corresponds to the technician A and other --- to the customer B there is an edge with an assigned weight that is equal to repairing time needed to technician A to handle the problem of the customer B (considering category of the problem of this customer). This graph is bipartite with technicians in the first part and customers in the second since there are edges only from technicians to customers. Moreover, we have a complete bipartite graph because there is an edge between every technician vertex and every customer vertex.
+
+	\paragraph{}
+	To solve an Assignment Problem means to find a perfect matching with minimum cost in this graph. Indeed, in a perfect matching every technician is assigned to a single customer and visa versa every customer has a single technician working on his problem and among all such matchings we choose the one with the minimum sum of edges --- minimum total repairing time because our expenses are proportional to it.
+
+	\paragraph{}
+	The AP can be efficiently solved by the Hungarian algorithm \ref{burkard12}. The input graph for Hungarian algorithm is given as an $15\times 15$ table where rows correspond to technicians and columns correspond to customers. The value in $i$-th row and $j$-th column represents the repairing time needed for technician $i$ to handle the problem of the customer $j$ (considering its category). The graph is shown in the Table \ref{graph-1-a}.
+
+\begin{table}[H]
+	\centering
+	\caption{Input matrix for a Hungarian algorithm}
+	\begin{tabular}{|*{16}{c|}}\hline
+\backslashbox{Tech.}{Cust.} & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\\hline
+1 & 26  & 45  & 159  & 193  & 41  & 49  & 174  & 76  & 193  & 187  & 41  & 159  & 174  & 201  & 193 \\ \hline
+2 & 17  & 42  & 128  & 167  & 50  & 38  & 146  & 91  & 167  & 162  & 50  & 128  & 146  & 122  & 167 \\ \hline
+3 & 28  & 52  & 152  & 212  & 51  & 44  & 156  & 111  & 212  & 145  & 51  & 152  & 156  & 221  & 212 \\ \hline
+4 & 24  & 44  & 155  & 146  & 58  & 41  & 122  & 84  & 146  & 209  & 58  & 155  & 122  & 177  & 146 \\ \hline
+5 & 26  & 51  & 139  & 144  & 66  & 44  & 164  & 85  & 144  & 201  & 66  & 139  & 164  & 190  & 144 \\ \hline
+6 & 21  & 58  & 176  & 196  & 65  & 52  & 157  & 95  & 196  & 197  & 65  & 176  & 157  & 209  & 196 \\ \hline
+7 & 19  & 50  & 173  & 192  & 54  & 50  & 97  & 96  & 192  & 183  & 54  & 173  & 97  & 192  & 192 \\ \hline
+8 & 19  & 45  & 135  & 175  & 52  & 42  & 99  & 84  & 175  & 177  & 52  & 135  & 99  & 212  & 175 \\ \hline
+9 & 17  & 46  & 119  & 194  & 58  & 38  & 178  & 98  & 194  & 178  & 58  & 119  & 178  & 158  & 194 \\ \hline
+10 & 24  & 50  & 109  & 218  & 60  & 61  & 142  & 80  & 218  & 199  & 60  & 109  & 142  & 150  & 218 \\ \hline
+11 & 18  & 48  & 146  & 159  & 57  & 48  & 156  & 88  & 159  & 178  & 57  & 146  & 156  & 190  & 159 \\ \hline
+12 & 28  & 43  & 124  & 150  & 55  & 36  & 132  & 105  & 150  & 158  & 55  & 124  & 132  & 183  & 150 \\ \hline
+13 & 22  & 57  & 129  & 233  & 48  & 50  & 158  & 102  & 233  & 157  & 48  & 129  & 158  & 155  & 233 \\ \hline
+14 & 28  & 58  & 168  & 159  & 48  & 47  & 136  & 110  & 159  & 217  & 48  & 168  & 136  & 179  & 159 \\ \hline
+15 & 24  & 49  & 123  & 112  & 54  & 44  & 196  & 98  & 112  & 181  & 54  & 123  & 196  & 135  & 112 \\
+\hline
+	\end{tabular}
+	\label{graph-1-a}
+\end{table}
+
+	\paragraph{}
+	The optimal assignment is shown in the Table \ref{hungarian-1-a}. To total repairing time equals 1,370 which is clearly lower than the one obtained using greedy strategy.
+
+\begin{table}[H]
+	\centering
+	\caption{Optimal assignment for first-call-first-served scheme}
+	\begin{tabular}{|c|c|c|}\hline
+Customer & Technician & Repairing time \\ \hline
+1 & 6 & 21 \\
+2 & 11 & 48 \\
+3 & 9 & 119 \\
+4 & 5 & 144 \\
+5 & 14 & 48 \\
+6 & 12 & 36 \\
+7 & 7 & 97 \\
+8 & 1 & 76 \\
+9 & 4 & 146 \\
+10 & 3 & 145 \\
+11 & 13 & 48 \\
+12 & 10 & 109 \\
+13 & 8 & 99 \\
+14 & 2 & 122 \\
+15 & 15 & 112 \\
+\hline
+	\end{tabular}
+	\label{hungarian-1-a}
+\end{table}
+
+\end{enumerate}
+
+\item\begin{quote}GTC now wants to analyze the consequences of serving fifteen customers out of
+twenty for which the total wage is as low as possible.\end{quote}
+
+\begin{enumerate}[1.]
+\item\begin{quote}By inspection, how would you assign the fifteen technicians to the customers?
+What is the rationale behind your solution procedure?\end{quote}
+\item\begin{quote}Explain why your solution need not be optimal.\end{quote}
+\item\begin{quote}Set up an optimization model to solve this problem.\end{quote}
+\item\begin{quote}What is an optimal assignment of technicians to customers now, and what is
+the total repairing time?\end{quote}
+\end{enumerate}
+
+\end{enumerate}
