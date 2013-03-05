@@ -185,7 +185,7 @@ struct graph {
         return res;
     }
 
-    int gready() {
+    int greedy_yx() {
         clr(S, 0);
         clr(xy, -1);
         clr(yx, -1);
@@ -204,10 +204,43 @@ struct graph {
         return res;
     }
 
-    void print_assignment() {
+    int greedy() {
+        clr(S, 0);
+        clr(T, 0);
+        clr(xy, -1);
+        clr(yx, -1);
+        int res = 0;
+        for (int it = 0; it < n; ++it) {
+            int bestx = -1, besty = -1;
+            for (int x = 0; x < n; ++x) {
+                if (S[x]) continue;
+                for (int y = 0; y < n; ++y) {
+                    if (T[y]) continue;
+                    if (bestx == -1 || cost[bestx][besty] > cost[x][y])
+                        bestx = x, besty = y;
+                }
+            }
+            S[bestx] = T[besty] = true;
+            xy[bestx] = besty;
+            yx[besty] = bestx;
+            if (cost[bestx][besty] < INF)
+                res += cost[bestx][besty];
+        }
+        return res;
+    }
+
+    void print_assignment_yx() {
         printf("Customer & Technician & Repairing time \\\\ \\hline\n");
         for (int i = 0; i < n; ++i) {
             printf("%d & %d & %d \\\\\n", i + 1, yx[i] + 1, cost[yx[i]][i]);
+        }
+        printf("\\hline\n");
+    }
+
+    void print_assignment_xy() {
+        printf("Technician & Customer & Repairing time \\\\ \\hline\n");
+        for (int i = 0; i < n; ++i) {
+            printf("%d & %d & %d \\\\\n", i + 1, xy[i] + 1, cost[i][xy[i]]);
         }
         printf("\\hline\n");
     }
@@ -221,9 +254,12 @@ struct graph {
         for (int i = 0; i < n; ++i) {
             printf("%d", i + 1); 
             for (int j = 0; j < n; ++j) {
-                printf(" & %d ", cost[i][j]);
+                if (cost[i][j] < INF)
+                    printf(" & %d ", cost[i][j]);
+                else
+                    printf(" & $\\infty$ ");
             }
-            printf("\\\\\n");
+            printf("\\\\ \\hline\n");
         }
         printf("\\hline\n");
     }
@@ -265,13 +301,94 @@ int main() {
                 g.cost[i][j] = cost[i][category[j]];
             }
         }
-        int res = g.gready();
+        int res = g.greedy_yx();
         cout << res << endl;
-        g.print_assignment();
+        g.print_assignment_yx();
         g.print_cost_matrix();
         res = g.hungarian();
         cout << res << endl;
-        g.print_assignment();
+        g.print_assignment_yx();
+        cout << endl;
+    }
+
+    {
+        cout << "4.1 b)\n";
+        g.n = CUSTOMERS;
+        for (int i = 0; i < g.n; ++i) {
+            for (int j = 0; j < g.n; ++j) {
+                if (i < TECHNICIANS)
+                    g.cost[i][j] = cost[i][category[j]];
+                else
+                    g.cost[i][j] = INF;
+            }
+        }
+        int res = g.greedy();
+        cout << res << endl;
+        g.print_assignment_xy();
+        g.print_cost_matrix();
+        res = g.hungarian();
+        cout << res << endl;
+        g.print_assignment_xy();
+        cout << endl;
+    }
+
+    {
+        cout << "4.1 d)\n";
+        g.n = CUSTOMERS;
+        for (int i = 0; i < g.n; ++i) {
+            for (int j = 0; j < g.n; ++j) {
+                if (i < TECHNICIANS)
+                    g.cost[i][j] = cost[i][category[j]];
+                else
+                    g.cost[i][j] = INF;
+            }
+        }
+        int val = -1;
+        int x = 2 - 1, y = 14 - 1;
+        for (g.cost[x][y] = 0; g.cost[x][y] <= 200; ++g.cost[x][y]) {
+            cout << g.hungarian();
+            cout << " " << g.cost[x][y] << " " << g.xy[x] + 1 << "; ";
+            if (val == -1 && g.xy[x] != y)
+                val = g.cost[x][y];
+        }
+        cout << endl;
+        cout << val << ' ' << g.xy[x] + 1 << endl;
+        cout << endl;
+    }
+
+    {
+        cout << "4.1 e)\n";
+        g.n = TECHNICIANS;
+        for (int i = 0; i < g.n; ++i) {
+            for (int j = 0; j < g.n; ++j) {
+                g.cost[i][j] = cost[i][category[j]];
+            }
+        }
+        memcpy(g.cost[2 - 1], g.cost[8 - 1], sizeof g.cost[2 - 1]);
+        //g.print_cost_matrix();
+        int res = g.hungarian();
+        cout << res << endl;
+        // replace 2 by 8
+        g.print_assignment_yx();
+        cout << endl;
+    }
+
+    {
+        cout << "4.1 f)\n";
+        g.n = CUSTOMERS;
+        for (int i = 0; i < g.n; ++i) {
+            for (int j = 0; j < g.n; ++j) {
+                if (i < TECHNICIANS && j != 4 - 1)
+                    g.cost[i][j] = cost[i][category[j]];
+                else
+                    g.cost[i][j] = INF;
+            }
+        }
+        //g.print_cost_matrix();
+        int res = g.hungarian();
+        cout << res << endl;
+        g.print_assignment_xy();
+        cout << endl;
     }
 
     return 0;
