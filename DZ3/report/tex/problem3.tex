@@ -1,1 +1,397 @@
 \subsection{Problem 4.3. Team Building Excursion}
+
+\begin{quote}Once a year the department located in Brussels organizes an excursion for its 40 \\ 
+employees. This excursion is organized in a holiday resort in the forest. The employees
+leave on Friday and come back on the next Sunday. The goal of the excursion
+is team building. Therefore, not everything in the holiday resort is included in the
+service provided by the resort. All the tasks to be done by the employees are listed in
+Table \ref{tasks}. For example, during the excursion there are two days with breakfast. Each
+of these days the breakfast is divided into two subtasks. So, a total of four tasks is
+needed to prepare breakfast.\end{quote}
+
+\begin{table}[H]
+	\centering
+	\caption{Tasks to be done by employees}
+	\begin{tabular}{lcc}\hline
+Task Description & \# Subtasks & \# Days \\ \hline
+1. Preparing breakfast & 2 & 2\\
+2. Setting the tables (breakfast) & 3 & 2\\
+3. Doing the dishes (breakfast) & 3 & 2\\
+4. Preparing lunch & 2 & 3\\
+5. Preparing supper & 5 & 3\\
+6. Setting the tables (supper) & 4 & 3\\
+7. Doing the dishes (supper) & 6 & 3\\
+8. Cleaning the rooms on the last day & 13 & 1\\ \hline
+	\end{tabular}
+	\label{tasks}
+\end{table}
+
+\begin{quote}
+An overall total of 80 subtasks is needed to fully cover all tasks. The excursion
+committee has decided that all 40 employees should do exactly two subtasks.
+To ease the pain of doing ``forced labor'', employees may label the tasks as
+``doable'' or ``non-doable''. That is, if an employee labels a task as doable, then he/she
+is willing to do all subtasks of the task. The doable tasks of each employee are shown
+in Table \ref{doable-tasks}. For example, Employee 1 is willing to do tasks 3 and 5. The excursion
+committee wants to assign employees to tasks such that the number of non-doable
+tasks is minimized. It is assumed that the workload of all subtasks is equal.
+\end{quote}
+
+\begin{table}[H]
+	\centering
+	\caption{Doable tasks for each employee}
+	\begin{tabular}{cc||cc}\hline
+Employee & Doable Tasks & Employee & Doable Tasks \\ \hline
+1 & 3, 5 & 21 & 5, 6 \\
+2 & 1 ,2 & 22 & none \\
+3 & 6 & 23 & 6 \\
+4 & 2 & 24 & 1, 3 \\
+5 & 7 & 25 & 3, 5 \\
+6 & 3 & 26 & 4 \\
+7 & 3, 4 & 27 & 5, 6 \\
+8 & 2, 3 & 28 & 6 \\
+9 & 7 & 29 & 6, 7 \\
+10 & none & 30 & 6, 7 \\
+11 & 6, 7, 8 & 31 & 6, 7 \\
+12 & 2 & 32 & none \\
+13 & 8 & 33 & 4, 8 \\
+14 & 2 & 34 & none \\
+15 & 6, 7 & 35 & 3 \\
+16 & 4 & 36 & 5 \\
+17 & 4 & 37 & 5 \\
+18 & 6, 7 & 38 & 7 \\
+19 & 4, 8 & 39 & none \\
+20 & 3 & 40 & 4 \\ \hline
+	\end{tabular}
+	\label{doable-tasks}
+\end{table}
+
+\begin{enumerate}[(a)]
+\item\begin{quote}By inspection, how would you assign the employees to the tasks? How many
+non-doable tasks have to be done in your solution?\end{quote}
+
+	\paragraph{}
+	Let's assign the subtasks by the simplest yet reasonable way. Let's consider employees from 1 to 40 and assign subtask only if he/she has a doable subtask among the unassigned ones. After making all such assignment let's assign the rest of subtasks arbitrary because they are no doable subtasks among them anyway. This solution leads to an assignment with 20 non-doable subtasks (see Table \ref{greedy-3-a} for reference).
+
+\begin{table}[H]
+	\centering
+	\caption{Simplest greedy assignment of subtasks}
+	\begin{tabular}{ccc||ccc}\hline
+Employee & Tasks & Non-doable subtasks & Employee & Tasks & Non-doable subtasks \\ \hline
+1 & 3, 3 & 0 & 21 & 5, 5 & 0 \\
+2 & 1, 1 & 0 & 22 & 7, 7 & 2 \\
+3 & 6, 6 & 0 & 23 & 6, 6 & 0 \\
+4 & 2, 2 & 0 & 24 & 1, 1 & 0 \\
+5 & 7, 7 & 0 & 25 & 5, 5 & 0 \\
+6 & 3, 3 & 0 & 26 & 7, 7 & 2 \\
+7 & 3, 3 & 0 & 27 & 5, 5 & 0 \\
+8 & 2, 2 & 0 & 28 & 6, 6 & 0 \\
+9 & 7, 7 & 0 & 29 & 7, 7 & 0 \\
+10 & 5, 5 & 2 & 30 & 7, 7 & 0 \\
+11 & 6, 6 & 0 & 31 & 7, 7 & 0 \\
+12 & 2, 2 & 0 & 32 & 7, 8 & 2 \\
+13 & 8, 8 & 0 & 33 & 8, 8 & 0 \\
+14 & 5, 5 & 2 & 34 & 8, 8 & 2 \\
+15 & 6, 6 & 0 & 35 & 8, 8 & 2 \\
+16 & 4, 4 & 0 & 36 & 5, 5 & 0 \\
+17 & 4, 4 & 0 & 37 & 5, 5 & 0 \\
+18 & 6, 6 & 0 & 38 & 7, 7 & 0 \\
+19 & 4, 4 & 0 & 39 & 8, 8 & 2 \\
+20 & 5, 7 & 2 & 40 & 8, 8 & 2 \\
+\hline
+	\end{tabular}
+	\label{greedy-3-a}
+\end{table}
+
+\item\begin{quote}Try to find a method that finds a better solution. (The ``better'' solution need not
+be an optimal solution.) Make a list of the employees with their non-doable tasks.
+What is the rationale behind your solution?\end{quote}
+
+	\paragraph{}
+	Let's try a little smarter approach to distributing subtasks. We repeat the following procedure number of subtasks times (80 times): choose the employee with the least positive number of available doable subtasks and assign him any of these subtasks, if there is no employee with available doable subtasks then we can assign the rest of subtasks arbitrary. This greedy approach is based on the idea that there will be still available doable subtasks for people with large number of doable subtasks while we assign subtasks to those who has little variants to choose from. This approach leads to a better solution shown in the Table \ref{greedy-3-b} with 16 non-doable subtasks.
+
+\begin{table}[H]
+	\centering
+	\caption{Smart greedy assignment of subtasks}
+	\begin{tabular}{ccc||ccc}\hline
+Employee & Tasks & Non-doable subtasks & Employee & Tasks & Non-doable subtasks \\ \hline
+1 & 5, 5 & 0 & 21 & 6, 6 & 0 \\
+2 & 1, 1 & 0 & 22 & 5, 5 & 2 \\
+3 & 6, 6 & 0 & 23 & 6, 6 & 0 \\
+4 & 2, 2 & 0 & 24 & 1, 1 & 0 \\
+5 & 7, 7 & 0 & 25 & 5, 5 & 0 \\
+6 & 3, 3 & 0 & 26 & 5, 5 & 2 \\
+7 & 4, 4 & 0 & 27 & 6, 6 & 0 \\
+8 & 3, 3 & 0 & 28 & 6, 6 & 0 \\
+9 & 7, 7 & 0 & 29 & 7, 7 & 0 \\
+10 & 5, 5 & 2 & 30 & 7, 7 & 0 \\
+11 & 8, 8 & 0 & 31 & 7, 7 & 0 \\
+12 & 2, 2 & 0 & 32 & 5, 6 & 2 \\
+13 & 8, 8 & 0 & 33 & 8, 8 & 0 \\
+14 & 2, 2 & 0 & 34 & 6, 7 & 2 \\
+15 & 7, 7 & 0 & 35 & 7, 8 & 2 \\
+16 & 4, 4 & 0 & 36 & 5, 5 & 0 \\
+17 & 4, 4 & 0 & 37 & 5, 5 & 0 \\
+18 & 7, 7 & 0 & 38 & 7, 7 & 0 \\
+19 & 8, 8 & 0 & 39 & 8, 8 & 2 \\
+20 & 3, 3 & 0 & 40 & 8, 8 & 2 \\
+\hline
+	\end{tabular}
+	\label{greedy-3-b}
+\end{table}
+
+\item\begin{quote}Determine an optimal solution to this problem? Make a list of the employees with
+their non-doable tasks.\end{quote}
+
+	\paragraph{}
+	To find an optimal solution let's consider mathematical formulation of this problem. Let's consider a bipartite graph $G=(S,T,E)$ where set of vertices $S$ correspond to employees and set $T$ correspond to subtasks. As we should assign exactly two subtasks to each employee there are exactly two vertices in set $S$ corresponding to each employee, so $|S|=|T|=80$. There is an edge between vertices $i\in S$ and $j \in T$ iff employee corresponding to vertex $i$ considers subtask $j$ doable. In order to find an optimal assignment that minimizes the number of non-doable tasks we should find the maximum number of pairs (vertex corresponding to employee, vertex corresponding to subtask) so that all the vertices among all pairs are different, or in other words we should find the subset of edges in $E$ with maximum cardinality so that no two edges are incident to a single vertex from one part --- the problem of finding the maximum matching in $G$. Indeed, maximum matching maximizes the number of doable tasks in the assignment as every edge correspond to a ``doable'' relation thus minimizing the number of non-doable subtasks as the total number of subtasks to be done is fixed to 80.
+
+	\paragraph{}
+	Maximum matching in a bipartite graph problem can be solved efficiently using Kuhn algorithm, that finds an augmenting path from each vertex from $S$ to $T$ and adds it to the matching if it exists. The optimal matching is show in Table \ref{hungarian-3-c}. By coincidence it has the exact same number of non-doable tasks as the greedy solution from part (b) --- 16. But it's worth noting that the described greedy approach doesn't guarantee the optimality of the solution.
+
+\begin{table}[H]
+	\centering
+	\caption{Optimal assignment of subtasks}
+	\begin{tabular}{ccc||ccc}\hline
+Employee & Tasks & Non-doable subtasks & Employee & Tasks & Non-doable subtasks \\ \hline
+1 & 5, 5 & 0 & 21 & 5, 5 & 0 \\
+2 & 1, 1 & 0 & 22 & 7, 7 & 2 \\
+3 & 6, 6 & 0 & 23 & 6, 6 & 0 \\
+4 & 2, 2 & 0 & 24 & 1, 1 & 0 \\
+5 & 7, 7 & 0 & 25 & 5, 5 & 0 \\
+6 & 3, 3 & 0 & 26 & 5, 5 & 2 \\
+7 & 4, 4 & 0 & 27 & 5, 5 & 0 \\
+8 & 3, 3 & 0 & 28 & 6, 6 & 0 \\
+9 & 7, 7 & 0 & 29 & 7, 7 & 0 \\
+10 & 7, 8 & 2 & 30 & 7, 7 & 0 \\
+11 & 6, 6 & 0 & 31 & 7, 7 & 0 \\
+12 & 2, 2 & 0 & 32 & 5, 8 & 2 \\
+13 & 8, 8 & 0 & 33 & 8, 8 & 0 \\
+14 & 2, 2 & 0 & 34 & 8, 7 & 2 \\
+15 & 6, 6 & 0 & 35 & 7, 7 & 2 \\
+16 & 4, 4 & 0 & 36 & 5, 5 & 0 \\
+17 & 4, 4 & 0 & 37 & 5, 5 & 0 \\
+18 & 6, 6 & 0 & 38 & 7, 7 & 0 \\
+19 & 8, 8 & 0 & 39 & 8, 8 & 2 \\
+20 & 3, 3 & 0 & 40 & 8, 8 & 2 \\
+\hline
+	\end{tabular}
+	\label{hungarian-3-c}
+\end{table}
+
+\begin{quote}The preferences given above are not quite realistic. Employees are likely to have
+more detailed preferences. Assume that each employee makes a preference list of 1 \\ 
+through 10, where the task with label 1 is a very bad choice and the task with label
+10 a very good choice. All preferences are listed in Table \ref{task-cost}.\end{quote}
+
+\begin{table}[H]
+	\centering
+	\caption{Employees' preference ranking of the tasks}
+	\begin{tabular}{c|*{8}c}\hline
+	\multirow{2}{*}{Technicians} & \multicolumn{8}{|c}{Task} \\ \cline{2-9}
+	& 1&2&3&4&5&6&7&8\\ \hline
+1&7&8&10&2&10&9&9&4 \\ 
+2&10&10&2&8&3&8&1&5 \\ 
+3&8&1&9&7&7&10&1&5 \\ 
+4&1&10&3&5&8&9&4&7 \\ 
+5&5&2&9&9&8&9&10&6 \\ 
+6&9&7&10&3&7&6&1&8 \\ 
+7&8&2&10&10&5&8&2&9 \\ 
+8&8&10&10&3&6&8&3&6 \\ 
+9&4&3&5&6&9&4&10&1 \\ 
+10&1&6&3&7&7&1&5&8 \\ 
+11&4&7&9&3&2&10&10&10 \\ 
+12&5&10&9&6&4&2&2&7 \\ 
+13&7&5&8&8&4&7&4&10 \\ 
+14&3&10&1&8&4&5&4&2 \\ 
+15&9&2&8&2&1&10&10&4 \\ 
+16&7&1&5&10&6&3&3&7 \\ 
+17&5&4&7&10&3&4&5&2 \\ 
+18&9&7&2&6&4&10&10&1 \\ 
+19&3&3&9&10&5&7&7&10 \\ 
+20&2&9&10&5&3&1&2&9 \\ 
+21&7&3&1&2&10&10&6&9 \\ 
+22&9&1&6&3&3&4&3&5 \\ 
+23&6&5&3&2&6&10&1&2 \\ 
+24&10&3&10&1&1&7&6&7 \\ 
+25&5&2&10&5&10&3&1&6 \\ 
+26&1&9&2&10&4&4&1&8 \\ 
+27&9&4&2&1&10&10&4&5 \\ 
+28&2&6&8&5&4&10&2&9 \\ 
+29&9&2&1&6&3&10&10&9 \\ 
+30&8&3&8&9&8&10&10&5 \\ 
+31&9&2&7&3&2&10&10&5 \\ 
+32&8&2&1&5&8&6&7&6 \\ 
+33&4&1&9&10&3&2&1&10 \\ 
+34&5&6&2&7&3&4&2&6 \\ 
+35&4&7&10&7&6&2&6&6 \\ 
+36&1&8&4&5&10&4&1&3 \\ 
+37&4&2&6&9&10&1&5&5 \\ 
+38&8&7&4&6&6&8&10&1 \\ 
+39&4&7&5&1&6&7&6&9 \\ 
+40&3&6&7&10&9&6&2&3 \\ 
+\hline
+	\end{tabular}
+	\label{task-cost}
+\end{table}
+
+\item\begin{quote}Use the preferences from Table \ref{task-cost} to determine an assignment of employees to
+tasks with the highest sum of the levels of preference. Analyze the difference
+between the solution to this problem and the solution to part (c)?\end{quote}
+
+	\paragraph{}
+	The stated problem is equivalent to the classical Assignment Problem. We now the profit of each subtask (it equals to the profit of a task) if it is done by the particular employee, so we want to assign employees to subtasks so that the sum of profits is maximized. As we should assign each employee with exactly two subtasks once again we imagine that we have two exact copies of each employee.
+
+	\paragraph{}
+	The mathematical formulation is similar to that in part (c), but now the graph $G$ is weight cause we have a cost assigned to each edge that is equal to the preference of particular subtask to particular employee. In order to find an optimal assignment we should find the maximum weighted matching in this graph. It can be done effectively using Hungarian algorithm. The optimal assignment with sum of preferences equal to 769 is shown in Table \ref{hungarian-3-d}. This assignment differs from that in part (c) because now we have more detailed information about employees preferences so we are able to satisfy employees' demands more precisely. But still most of the employees got the subtasks with maximum sum of preferences --- 20. Also some of employees who had to do non-doable tasks in part (c) --- 10, 22, 32, 34, 39 and 40 are dealing now with not so perfect subtasks combinations. And there are employees, who did doable tasks in part (c) but now are not assigned to there favorite tasks (but still sum of preferences is higher than average --- 10) --- 4, 7, 20 and 32.
+
+\begin{table}[H]
+	\centering
+	\caption{Optimal assignment of subtasks (using preference ranking)}
+	\begin{tabular}{ccc||ccc}\hline
+Employee & Tasks & Sum of preferences of subtasks & Employee & Tasks & Sum of preferences of subtasks \\ \hline
+1 & 5, 5 & 20 & 21 & 6, 6 & 20 \\
+2 & 2, 2 & 20 & 22 & 1, 1 & 18 \\
+3 & 6, 6 & 20 & 23 & 6, 6 & 20 \\
+4 & 6, 6 & 18 & 24 & 1, 1 & 20 \\
+5 & 7, 7 & 20 & 25 & 5, 5 & 20 \\
+6 & 3, 3 & 20 & 26 & 4, 4 & 20 \\
+7 & 6, 6 & 16 & 27 & 5, 5 & 20 \\
+8 & 3, 3 & 20 & 28 & 6, 6 & 20 \\
+9 & 7, 7 & 20 & 29 & 7, 7 & 20 \\
+10 & 5, 8 & 15 & 30 & 7, 7 & 20 \\
+11 & 7, 7 & 20 & 31 & 7, 7 & 20 \\
+12 & 2, 2 & 20 & 32 & 5, 5 & 16 \\
+13 & 8, 8 & 20 & 33 & 8, 8 & 20 \\
+14 & 2, 2 & 20 & 34 & 8, 8 & 12 \\
+15 & 7, 7 & 20 & 35 & 3, 3 & 20 \\
+16 & 4, 4 & 20 & 36 & 5, 5 & 20 \\
+17 & 4, 4 & 20 & 37 & 5, 5 & 20 \\
+18 & 7, 7 & 20 & 38 & 7, 7 & 20 \\
+19 & 8, 8 & 20 & 39 & 8, 8 & 18 \\
+20 & 8, 8 & 18 & 40 & 5, 5 & 18 \\
+\hline
+	\end{tabular}
+	\label{hungarian-3-d}
+\end{table}
+
+\begin{quote}It turns out that the excursion can be extended with one more day. It is decided that
+no more than three tasks and no less than two tasks are done by one person.\end{quote}
+
+	\paragraph{}
+	As there is no information on the subtasks available during the extra day we will assume that task \#4 ``Preparing lunch'' with its two subtasks has to be done by employees on that day. Also we will use preference ranking from part (d) when finding optimal assignment as it can lead to non-trivial solutions.
+
+\item\begin{quote}If the organizing committee would have decided to extend the excursion for one
+more day before the excursion started, then what is an optimal assignment of
+employees to tasks?\end{quote}
+
+	\paragraph{}
+	If the committee is able to plan the whole assignment considering two additional subtasks, than in order to find the optimal assignment we should solve the general Assignment Problem but with extra constraints --- exactly two out of 40 employees have to take one additional subtask. So we add two extra vertices to the set $T$ for two additional subtasks of task \#4 plus two extra vertices to the set $S$ corresponding to two different employees to whom we will assign additional subtasks. As we do not know exactly which two employees to choose in order to get the optimal solution we will consider all possible pairs. After fixing two employees that get 3 subtasks we can solve the ordinary Assignment Problem as in part (d) using Hungarian algorithm. Then we choose the best answer among all pairs and declare it an optimal solution to this problem. The optimal assignment has sum of preferences equal to 793 and is shown in Table \ref{hungarian-3-e}. Employees 1 and 3 are assigned to 3 subtasks.
+
+\begin{table}[H]
+	\centering
+	\caption{Optimal assignment of subtasks with extra task \#4 and preliminary planning available}
+	\begin{tabular}{ccc||ccc}\hline
+Employee & Tasks & Sum of preferences of subtasks & Employee & Tasks & Sum of preferences of subtasks \\ \hline
+1 & 5, 5, 8 & 29 & 21 & 6, 6 & 20 \\
+2 & 2, 2 & 20 & 22 & 1, 1 & 18 \\
+3 & 6, 6, 5 & 29 & 23 & 6, 6 & 20 \\
+4 & 6, 6 & 18 & 24 & 1, 1 & 20 \\
+5 & 7, 7 & 20 & 25 & 5, 5 & 20 \\
+6 & 3, 3 & 20 & 26 & 4, 4 & 20 \\
+7 & 6, 4 & 18 & 27 & 6, 5 & 20 \\
+8 & 3, 3 & 20 & 28 & 6, 6 & 20 \\
+9 & 7, 7 & 20 & 29 & 7, 7 & 20 \\
+10 & 5, 8 & 15 & 30 & 7, 7 & 20 \\
+11 & 7, 7 & 20 & 31 & 7, 7 & 20 \\
+12 & 2, 2 & 20 & 32 & 5, 5 & 16 \\
+13 & 8, 8 & 20 & 33 & 8, 8 & 20 \\
+14 & 2, 2 & 20 & 34 & 4, 8 & 13 \\
+15 & 7, 7 & 20 & 35 & 3, 3 & 20 \\
+16 & 4, 4 & 20 & 36 & 5, 5 & 20 \\
+17 & 4, 4 & 20 & 37 & 5, 5 & 20 \\
+18 & 7, 7 & 20 & 38 & 7, 7 & 20 \\
+19 & 8, 8 & 20 & 39 & 8, 8 & 18 \\
+20 & 8, 8 & 18 & 40 & 5, 5 & 18 \\
+\hline
+	\end{tabular}
+	\label{hungarian-3-e}
+\end{table}
+
+\item\begin{quote}What would be an optimal solution if the decision was made on the Sunday during
+the excursion? Analyze the difference with part (e).\end{quote}
+
+	\paragraph{}
+	If the decision of adding an extra task \#4 is made after all the other subtasks are already assigned and even completed than the optimal solution is trivial --- in order to maximize the sum of preferences we just assign two subtasks of task \#4 to employees who enjoy this task the most. In particular employees 7 and 16 evaluate task \#4 as 10, so we just assign them to this task. The sum of preferences of this optimal solution equals the sum of the solution from part (d) plus 20 --- 789. Note that it's lower than we could get with preliminary planning available in part (e). In part (e) we could reconsider the whole assignment having two additional subtasks so we switched some of the employees to more desirable tasks in order to maximize profit instead of just adding two the most profitable edges to already existing solution.
+
+\item\begin{quote}Due to illness, employees 15, 29, and 35 are unable to join the excursion. This
+means that six tasks have to be done by the other colleagues. Again, no more than
+three tasks and no less than two tasks are done by one person. What is an optimal
+assignment of employees to tasks in case of part (d).\end{quote}
+
+	\paragraph{}
+	As 3 employees are out we need to choose 6 employees whom we will assign exactly 3 subtasks. Considering all possible variants of choosing 6 employees out of 37 is a computationally hard task so we modify the graph in part (d) so that our modified problem can be solved with as a single instance of an Assignment Problem.
+
+	\paragraph{}
+	Again we consider the bipartite graph $G=(S,T,E)$ but now there 3 vertices in $S$ corresponding to each of the employees. Also there are 37 additional fake subtask-vertices. Each of these fake vertices corresponds to one particular employee. We connect each of the fake vertices to exactly 3 vertices of its corresponding employee with edges of weight $-M$ where $M$ is significantly larger than the total cost of the solution of the whole problem. After that we add edges from fake vertices to the rest of the vertices of part $S$ with weight $-M^2$. We claim that the solution of the Assignment Problem on this graph is exactly the solution we are looking for. Indeed, the Hungarian algorithm in order to maximize the profit will assign as much employees to 3 subtasks as possible. But there are only 6 employees that can be assigned to 3 subtasks with positive weight so they must appear in the solution. After that the Hungarian algorithm will assign each of the remaining 31 employees to exactly 2 subtasks (its possible since it's exactly the amount of subtasks left) because it's the only way not to include the negative (very negative) edges in the solution so far. Finally, since we have 3 vertices for each employee, the Hungarian algorithm will assign those who have 2 subtasks to their corresponding fake subtask as it's much profitable than anything else. Now we can easily obtain the answer by excluding the fake subtasks from the resulting matching. The optimal matching is shown in Table \ref{hungarian-3-g}. The sum of preferences is equal to 773 which is slightly better than when employees 15, 29, and 35 were available.
+
+\begin{table}[H]
+	\centering
+	\caption{Optimal assignment of subtasks with employees 15, 29, and 35 being sick}
+	\begin{tabular}{ccc||ccc}\hline
+Employee & Tasks & Sum of preferences of subtasks & Employee & Tasks & Sum of preferences of subtasks \\ \hline
+1 & 5, 5, 5 & 30 & 21 & 6, 5 & 20 \\
+2 & 1, 2 & 20 & 22 & 1, 1 & 18 \\
+3 & 6, 6, 6 & 30 & 23 & 6, 6 & 20 \\
+4 & 6, 6 & 18 & 24 & 1, 3 & 20 \\
+5 & 7, 7, 7 & 30 & 25 & 5, 5 & 20 \\
+6 & 3, 3 & 20 & 26 & 4, 4 & 20 \\
+7 & 3, 3 & 20 & 27 & 6, 6 & 20 \\
+8 & 2, 3 & 20 & 28 & 6, 6 & 20 \\
+9 & 7, 7, 7 & 30 & 29 & - & - \\
+10 & 5, 8 & 15 & 30 & 7, 7 & 20 \\
+11 & 7, 7, 7 & 30 & 31 & 7, 7 & 20 \\
+12 & 2, 2 & 20 & 32 & 5, 5 & 16 \\
+13 & 8, 8 & 20 & 33 & 8, 8 & 20 \\
+14 & 2, 2 & 20 & 34 & 8, 8 & 12 \\
+15 & - & - & 35 & - & - \\
+16 & 4, 4 & 20 & 36 & 5, 5 & 20 \\
+17 & 4, 4 & 20 & 37 & 5, 5 & 20 \\
+18 & 7, 7, 7 & 30 & 38 & 7, 7 & 20 \\
+19 & 8, 8 & 20 & 39 & 8, 8 & 18 \\
+20 & 8, 8 & 18 & 40 & 5, 5 & 18 \\
+\hline
+	\end{tabular}
+	\label{hungarian-3-g}
+\end{table}
+
+\item\begin{quote}Determine the tolerance interval of the coefficient representing the level of preference
+of employee 2 on task 6.\end{quote}
+
+	\paragraph{}
+	To determine the tolerance interval of the coefficient representing the level of preference of employee 2 on task 6 we iterate through the value of this coefficient and solve the Assignment Problem as in part (d). The results of this calculations are shown in Table \ref{tol-3-h}.
+
+\begin{table}[H]
+	\centering
+	\caption{Perturbation function of the coefficient representing the preference of employee 2 on task 6}
+	\begin{tabular}{|c|c|c|}\hline
+	Value of the coefficient & Cost of the optimal solution & Subtasks employee 2 is assigned to \\ \hline
+1 & 769 & 2, 2 \\
+2 & 769 & 2, 2 \\
+3 & 769 & 2, 2 \\
+4 & 769 & 2, 2 \\
+5 & 769 & 2, 2 \\
+6 & 769 & 2, 2 \\
+7 & 769 & 2, 2 \\
+8 & 769 & 2, 2 \\
+9 & 771 & 6, 6 \\
+10 & 773 & 6, 6 \\
+	\hline
+	\end{tabular}
+	\label{tol-3-h}
+\end{table}
+
+	\paragraph{}
+	It's obvious that decreasing of preference on task 6 from 8 to 1 leaves employee 2 assigned to subtasks of task \#2 in the optimal solution. But as we can see from Table \ref{tol-3-h} starting from 9 employee 2 is assigned to subtasks of task \#6 in the optimal solution. So the upper tolerance for this coefficient equals $9 - 8 = 1$, because increasing it by 1 makes the algorithm reconsider optimal solution.
+
+\end{enumerate}
