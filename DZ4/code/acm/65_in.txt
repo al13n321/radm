@@ -1,0 +1,76 @@
+17 70
+A E 2
+A I 4
+A J 3
+A L 8
+B C 10
+B D 15
+B F 12
+B H 8
+C B 10
+C D 9
+C F 20
+C H 24
+C M 50
+D B 15
+D C 9
+D E 7
+D F 18
+D L 10
+E A 2
+E D 7
+E F 6
+E G 12
+E Q 11
+F B 12
+F C 20
+F D 18
+F E 6
+F G 5
+F H 6
+G E 12
+G F 5
+G H 4
+G Q 10
+H B 8
+H C 24
+H F 6
+H G 4
+I A 4
+I J 3
+I P 15
+I Q 3
+J A 3
+J I 3
+J K 4
+J O 6
+K J 4
+K L 3
+K O 8
+K M 9
+L A 8
+L D 10
+L K 3
+L M 7
+M C 50
+M K 9
+M L 7
+M N 10
+N M 10
+N O 4
+N P 11
+O J 6
+O K 8
+O N 4
+O P 5
+P I 15
+P N 11
+P O 5
+Q E 11
+Q G 10
+Q I 3
+
+11
+A I Q G H F B C D E A
+9
+A L K M N P O J A

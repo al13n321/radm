@@ -1,0 +1,86 @@
+\section{Exercises on Network Routing Problems}
+
+\subsection{Problem 6.1. Production Scheduling}
+
+\paragarph{}
+\begin{quote}
+Global Handset Company (GHC) is a subsidiary of GTC that manufactures handsets for GTC customers. These handsets come in various colors, and GHC works as a job shop, accepting orders from GTC and delivering them within a desired date. GHC works 8 hours a day, 5 days a week, and uses injection molding technology to manufacture the plastic components in the handsets and are capable of manufacturing 500 handsets each hour. The assembly of the handsets requires very little time, so that the time required to produce a handset depends critically on the number of handset components that are molded. GHC requires time to change the colors of handsets, and these changeover times (in minutes) are given in Table \ref{table6-4}. On Friday evening, GHC received an order for 18000 handsets to be delivered next Friday (5 working days later). The details of the order are given in Table \ref{table6-5}. GHC knows that it needs to pay overtime to be able to meet the order. However, by sequencing the production activity properly, it can reduce the amount of overtime it must pay. (GHC pays overtime at the rate of \texteuro 500 per hour)
+\end{quote}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|ccccccccc}
+\hline
+& \begin{sideways} Clear~ \end{sideways} & \begin{sideways} White~ \end{sideways} & \begin{sideways} Yellow~ \end{sideways} & \begin{sideways} Orange~ \end{sideways} & \begin{sideways} Red~ \end{sideways} & \begin{sideways} Purple~ \end{sideways} & \begin{sideways} Blue~ \end{sideways} & \begin{sideways} Green~ \end{sideways} & \begin{sideways} Black~ \end{sideways} \\ \hline
+Clear & --- & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 \\
+White & 49 & --- & 32 & 50 & 49 & 49 & 50 & 50 & 49 \\
+Yellow & 50 & 47 & --- & 18 & 35 & 47 & 63 & 62 & 65 \\
+Orange & 65 & 50 & 48 & --- & 48 & 53 & 64 & 80 & 64 \\
+Red & 63 & 78 & 48 & 34 & --- & 18 & 79 & 79 & 65 \\
+Purple & 79 & 80 & 65 & 65 & 47 & --- & 80 & 79 & 50 \\
+Blue & 63 & 64 & 77 & 78 & 65 & 65 & --- & 19 & 49 \\
+Green & 62 & 63 & 77 & 77 & 65 & 64 & 32 & --- & 47 \\
+Black & 93 & 92 & 92 & 94 & 77 & 63 & 93 & 92 & --- \\ \hline
+\end{tabular}
+\caption{Changeover times}
+\label{table6-4}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccccccc}
+\hline
+Clear & White & Yellow & Orange & Red & Purple & Blue & Green & Black \\ \hline
+6000 & 4000 & 1000 & 3000 & 1000 & 500 & 500 & 500 & 1500 \\ \hline
+\end{tabular}
+\caption{Work order for GHC}
+\label{table6-5}
+\end{table}
+
+\paragraph{(a)}
+\begin{quote}
+Formulate this problem as a weighted Hamiltonian path problem.
+\end{quote}
+
+\paragraph{}
+We need to minimize overtime. To minimize overtime it is sufficient to miminize the sum of production and changeover time. The total production time is constant and equal to $500 \cdot 18000 = 9000000$ hours. So, we just need to minimize the sum changeover times. To do this we need to find a permutation of the colors that minimizes the sum of 8 changeover times between consecutive colors.
+
+\paragraph{}
+Consider a complete directed graph with 9 vertices corresponding to colors. The weights of arcs are equal to the corresponding changeover times. Hamiltonian path in this graph corresponds to permutation of colors. The weight of this graph is equal to the sum of 8 edges between consecutive vertices, which is equal to the sum of changeover times. This means our problem is equavalent to finding the shortest Hamiltonian path in this graph.
+
+\paragraph{}
+\begin{quote}
+Obtain a feasible solution to the problem using the nearest neighbor heuristic
+starting with the production of handsets colored “clear”.
+\end{quote}
+
+\paragraph{}
+The resulting solution is $ Clear \rightarrow White \rightarrow Yellow \rightarrow Orange \rightarrow Red \rightarrow Purple \rightarrow Black \rightarrow Green \rightarrow Blue $ with total changeover time 305 minutes, which gives overtime 65 minutes (\texteuro $541\frac{2}{3}$).
+
+\paragraph{(c)}
+\begin{quote}
+Compute a production plan for GHC that requires the lowest production and
+changeover time.
+\end{quote}
+
+\paragraph{}
+We used dynamic programming to find the optimal solution in $O(2^n n^2)$ time. One could as well use simpler brute force approach with $O(n! n)$ running time, but we had the DP implemented already for problem 6.5.
+
+\paragraph{}
+The optimal solution is $ Blue \rightarrow Green \rightarrow Clear \rightarrow White \rightarrow Yellow \rightarrow Orange \rightarrow Red \rightarrow Purple \rightarrow Black $. The total changeover time is 262 minutes. The overtime is 22 minutes. The cost is \texteuro $183\frac{1}{3}$.
+
+\paragraph{(d)}
+\begin{quote}
+At the beginning of day 3 of production, GTC informs GHC that there has been a mistake, and that the demand for “clear” handsets should be 7000 instead of 6000. Correspondingly, the demand for “black” handsets should be 500 instead of 1500.
+
+Will this change the production plan? If so, what are the cost implications of this mistake?
+\end{quote}
+
+\paragraph{}
+Let's see what's happening in the beginning of day 3. 16 working hours have passed. We manufactured all blue handsets in 1 hour, switched to green in 19 minutes, manufactured all green handsets in 1 hour, switched to clear in 62 minutes, manufactured all clear handsets in 12 hours, switched to white in 15 minutes and started manufacturing white handsets. Now we should as some stage go back to clear and produce additional 1000 handsets. Luckily, we haven't produced any black handsets yet, so we won't need to throw them away.
+
+\paragraph{}
+So, at the beginning of day 3 we need to reconsider the solution. The total production time stays the same: we made no extra handsets. Only the changeover times will suffer. We need to find a permutation of colors \{ White, Clear, Yellow, Orange, Red, Purple, Black \} starting frow White, minimizing the total changeover time. This is equivalent to finding the shortest Hamiltonian path in reduced graph and with fixed starting vertex. We did it with the same dynamic programming algorithm.
+
+\paragraph{}
+The new optimal production plan is $ Blue \rightarrow Green \rightarrow Clear \rightarrow White \text{(bad news)} \rightarrow Yellow \rightarrow Orange \rightarrow Clear \rightarrow Red \rightarrow Purple \rightarrow Black $ with total changeover time 294 minutes. The overtime is 54 minutes. The cost is \texteuro 450. This mistake is worth \texteuro $266\frac{2}{3}$.
