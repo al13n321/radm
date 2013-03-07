@@ -100,7 +100,7 @@ What is the rationale behind your solution procedure?\end{quote}
 total repairing time?\end{quote}
 
 	\paragraph{}
-	In order to find an optimal solution we should solve the so-called ``Assignment Problem'' (AP) \ref{burkard12}.
+	In order to find an optimal solution we should solve the so-called ``Assignment Problem'' (AP) \cite{burkard12}.
 
 	\paragraph{}
 	Let's consider a graph with vertices corresponding to technicians and customers. Between each pair of vertices where one corresponds to the technician A and other --- to the customer B there is an edge with an assigned weight that is equal to repairing time needed to technician A to handle the problem of the customer B (considering category of the problem of this customer). This graph is bipartite with technicians in the first part and customers in the second since there are edges only from technicians to customers. Moreover, we have a complete bipartite graph because there is an edge between every technician vertex and every customer vertex.
@@ -109,7 +109,7 @@ total repairing time?\end{quote}
 	To solve an Assignment Problem means to find a perfect matching with minimum cost in this graph. Indeed, in a perfect matching every technician is assigned to a single customer and visa versa every customer has a single technician working on his problem and among all such matchings we choose the one with the minimum sum of edges --- minimum total repairing time because our expenses are proportional to it.
 
 	\paragraph{}
-	The AP can be efficiently solved by the Hungarian algorithm \ref{burkard12}. The input graph for Hungarian algorithm is given as an $15\times 15$ table where rows correspond to technicians and columns correspond to customers. The value in $i$-th row and $j$-th column represents the repairing time needed for technician $i$ to handle the problem of the customer $j$ (considering its category). The graph is shown in the Table \ref{graph-1-a}.
+	The AP can be efficiently solved by the Hungarian algorithm \cite{burkard12}. The input graph for Hungarian algorithm is given as an $15\times 15$ table where rows correspond to technicians and columns correspond to customers. The value in $i$-th row and $j$-th column represents the repairing time needed for technician $i$ to handle the problem of the customer $j$ (considering its category). The graph is shown in the Table \ref{graph-1-a}.
 
 \begin{table}[H]
 	\centering

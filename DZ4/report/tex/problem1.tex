@@ -51,7 +51,7 @@ Consider a complete directed graph with 9 vertices corresponding to colors. The 
 \paragraph{}
 \begin{quote}
 Obtain a feasible solution to the problem using the nearest neighbor heuristic
-starting with the production of handsets colored “clear”.
+starting with the production of handsets colored ``clear''.
 \end{quote}
 
 \paragraph{}
@@ -64,14 +64,14 @@ changeover time.
 \end{quote}
 
 \paragraph{}
-We used dynamic programming to find the optimal solution in $O(2^n n^2)$ time. One could as well use simpler brute force approach with $O(n! n)$ running time, but we had the DP implemented already for problem 6.5.
+We used dynamic programming approach to the problem of finding Hamiltonian path to find the optimal solution in $O(2^n n^2)$ time \cite{karp62}. One could as well use simpler brute force approach with $O(n! n)$ running time, but we had the DP implemented already for problem 6.5.
 
 \paragraph{}
 The optimal solution is $ Blue \rightarrow Green \rightarrow Clear \rightarrow White \rightarrow Yellow \rightarrow Orange \rightarrow Red \rightarrow Purple \rightarrow Black $. The total changeover time is 262 minutes. The overtime is 22 minutes. The cost is \texteuro $183\frac{1}{3}$.
 
 \paragraph{(d)}
 \begin{quote}
-At the beginning of day 3 of production, GTC informs GHC that there has been a mistake, and that the demand for “clear” handsets should be 7000 instead of 6000. Correspondingly, the demand for “black” handsets should be 500 instead of 1500.
+At the beginning of day 3 of production, GTC informs GHC that there has been a mistake, and that the demand for ``clear'' handsets should be 7000 instead of 6000. Correspondingly, the demand for ``black'' handsets should be 500 instead of 1500.
 
 Will this change the production plan? If so, what are the cost implications of this mistake?
 \end{quote}

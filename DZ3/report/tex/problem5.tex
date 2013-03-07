@@ -192,7 +192,7 @@ GT I with Extra Li-Ion Battery profitable, in terms of percentage. The
 purchase prices and selling prices are listed in Table \ref{price}.\end{quote}
 
 	\paragraph{}
-	Let's evaluate the perturbation function of the short-term sales increase of the combination GT I with Extra Li-Ion Battery from Table \ref{inc}. We will iterate through possible values of this parameter starting from the initial one and evaluate the optimal assignment as in part (b) until it will be profitable to include pair GT I -- Extra Li-Ion Battery in the optimal solution. The perturbation function is given in Table \ref{tol-5-a}. We can observe that the minimum required increase in the considered parameter that makes the combination GT I with Extra Li-Ion Battery profitable (makes this pair appear in a optimal solution) is equal to 10. This increase is upper tolerance of this parameter by definition.
+	Let's evaluate the perturbation function of the short-term sales increase of the combination GT I with Extra Li-Ion Battery from Table \ref{inc}. We will iterate through possible values of this parameter starting from the initial one and evaluate the optimal assignment as in part (b) until it will be profitable to include pair GT I -- Extra Li-Ion Battery in the optimal solution. The perturbation function is given in Table \ref{tol-5-a}. We can observe that the minimum required increase in the considered parameter that makes the combination GT I with Extra Li-Ion Battery profitable (makes this pair appear in a optimal solution) is equal to 10. We can evaluate the minimum increase even more precisely by applying binary search on this parameter and determining it's maximal value that leaves everything as it is --- evaluate the upper tolerance. The resulting minimum increase (upper tolerance) equals $\approx$9.9796.
 
 \begin{table}[H]
 	\centering
@@ -232,8 +232,56 @@ Call Bundle of 400 minutes and calculate the profit of an optimal assignment usi
 \end{figure}
 
 	\paragraph{}
-	From the Figure \ref{perturbation-5-d} we can see that starting from value equal to 18 GT IV is combined with Call bundle (400 min.) in an optimal solution. The lower values of the parameter lead to exclusion of this pair from an optimal solution. It's clear that decreasing this value below 17 won't return this combination to the solution and increasing after 18 won't move this pair from the optimal assignment. Knowing perturbation function we are able to calculate the lower tolerance of this parameter --- the maximal decrease that leaves the considered combination in the optimal solution. Upper tolerance of $w_{2,14}$ equals $1177 - 1163 = 136 - 122 = 14$.
+	From the Figure \ref{perturbation-5-d} we can see that starting from value equal to 18 GT IV is combined with Call bundle (400 min.) in an optimal solution. The lower values of the parameter lead to exclusion of this pair from an optimal solution. It's clear that decreasing this value below 17 won't return this combination to the solution and increasing after 18 won't move this pair from the optimal assignment. Knowing perturbation function we are able to calculate the lower tolerance of this parameter --- the maximal decrease that leaves the considered combination in the optimal solution by applying binary search on this parameter. The minimal value of parameter that leaves GT IV is combined with Call bundle (400 min.) in an optimal solution is $\approx17.3065$, thus the lower tolerance equals $18-17.3065=0.6935$.
 
+\item\begin{quote}GTC discovered a mistake in the estimated short-term sales increase of phones
+combined with an Extra Li-Ion Battery. The estimated short-term sales increase
+of these combinations should be as shown in Table \ref{new-inc}. Analyze the differences
+and determine the cost of the mistake.\end{quote}
 
+\begin{table}[H]
+	\centering
+	\caption{Revised short-term sales increase estimates (in \%)}
+	\begin{tabular}{c|*{10}c}\hline
+	\multirow{2}{*}{} & \multicolumn{10}{|c}{GT} \\ \cline{2-11}
+	&I&II&III&IV&V&VI&VII&VIII&IX&X\\ \hline
+Increase&25&21&18&37&31&12&19&11&31&22\\
+\hline
+	\end{tabular}
+	\label{new-inc}
+\end{table}
+
+	\paragraph{}
+	Let's just recalculate the corresponding row in the cost matrix in Table \ref{graph-5-c} and find an optimal solution using Hungarian algorithm. The modified row of cost matrix is shown in Table \ref{graph-5-e}. The optimal assignment is shown in the Table \ref{hungarian-5-e}. The total profit equals \texteuro4,363.75 which is greater than the one obtained in part (c). It's can be easily explained as the revised short-term sales increase estimates suggest significant increase in profit almost for every cell phone combined with Extra Li-Ion Battery except for example phone GT VI that was combined with this product in the previous optimal solution in Table \ref{hungarian-5-c}. So the Hungarian algorithm was able to reconsider the matching and make use of the available increased values combining GT VI with another product along the way. The cost of mistake equals $4,363.75-4,304.80=\text{\texteuro}58.95$.
+
+\begin{table}[H]
+	\centering
+	\caption{Recalculated row of cost matrix $W$ for an optimal assignment problem of cell phones to other products with revised short-term sales increase estimates}
+	\begin{tabular}{|*{11}{c|}}\hline
+Products\textbackslash GT & I & II & III & IV & V & VI & VII & VIII & IX & X\\\hline
+Extra Li-Ion Battery & 306.25  & 320.65  & 336.30  & 438.40  & 419.20  & 408.80  & 440.30  & 438.45  & 517.45  & 542.90 \\ \hline
+\end{tabular}
+	\label{graph-5-e}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Optimal assignment problem of cell phones to other products with revised short-term sales increase estimates}
+	\begin{tabular}{|c|c|c|}\hline
+Cell phone type & Other product & Price (including short-term increase) \\ \hline
+GT I & USB Data Cable & 436.15 \\
+GT II & Belt-Clip Holster & 402.00 \\
+GT III & Handsfree Headset & 455.60 \\
+GT IV & Call bundle (300 min.) & 359.90 \\
+GT V & Call bundle (200 min.) & 348.00 \\
+GT VI & Call bundle (400 min.) & 408.25 \\
+GT VII & In-Car Charger & 477.40 \\
+GT VIII & LED Flashing Keypad & 490.05 \\
+GT IX & Extra Li-Ion Battery & 517.45 \\
+GT X & Call bundle (100 min.) & 468.95 \\
+\hline
+	\end{tabular}
+	\label{hungarian-5-e}
+\end{table}
 
 \end{enumerate}
