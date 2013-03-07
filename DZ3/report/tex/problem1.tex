@@ -210,7 +210,7 @@ Technician & Customer & Repairing time \\ \hline
 \item\begin{quote}Set up an optimization model to solve this problem.\end{quote}
 
 	\paragraph{}
-	Let's consider a complete bipartite graph $G=(T,C,E)$ with to set of vertices $T$ corresponding to technicians ($|T|=15$) and set of vertices $C$ corresponding to customers ($|C|=20$). Between each pair of vertices where one corresponds to the $i$-th technician and other --- to the $j$-th customer there is an edge with an assigned weight $w_{ij}$ that is equal to repairing time needed to technician $i$ to handle the problem of the customer $j$ (considering category of the problem of this customer). The cost matrix of this graph $W=\{w_{ij}\}$ is shown in Table \ref{graph-1-b}. As in \ref{graph-1-a} the rows correspond to technicians and columns correspond to customers.
+	Let's consider a complete bipartite graph $G=(T,C,E)$ with set of vertices $T$ corresponding to technicians ($|T|=15$) and set of vertices $C$ corresponding to customers ($|C|=20$). Between each pair of vertices where one corresponds to the $i$-th technician and other --- to the $j$-th customer there is an edge with an assigned weight $w_{ij}$ that is equal to repairing time needed to technician $i$ to handle the problem of the customer $j$ (considering category of the problem of this customer). The cost matrix of this graph $W=\{w_{ij}\}$ is shown in Table \ref{graph-1-b}. As in \ref{graph-1-a} the rows correspond to technicians and columns correspond to customers.
 
 \begin{table}[H]
 	\centering
@@ -248,7 +248,7 @@ $$
 	\textbf{Subject to}
 $$
 $$
-	\sum\limits_{j\in C} x_{ij} \leq 1 \ \text{for each }i\in T
+	\sum\limits_{j\in C} x_{ij} = 1 \ \text{for each }i\in T
 $$
 $$
 	x_{ij} \geq 0 \ \text{for each }i\in T,\  j\in C
